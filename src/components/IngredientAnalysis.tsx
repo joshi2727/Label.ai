@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { AlertTriangle, Shield, Info, ChevronRight } from 'lucide-react';
+import { findIngredient, getPersonalizedAnalysis, IngredientData } from '@/data/ingredientDatabase';
 
 interface Ingredient {
   id: string;
@@ -19,61 +20,15 @@ interface Ingredient {
 interface IngredientAnalysisProps {
   ingredients: string[];
   onBackToScan: () => void;
+  userAge?: number;
 }
 
-export function IngredientAnalysis({ ingredients, onBackToScan }: IngredientAnalysisProps) {
+export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: IngredientAnalysisProps) {
   const [analysisProgress, setAnalysisProgress] = useState(0);
   const [analyzedIngredients, setAnalyzedIngredients] = useState<Ingredient[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(true);
 
-  // Mock ingredient analysis data
-  const mockAnalysisData: Record<string, Ingredient> = {
-    "sugar": {
-      id: "sugar",
-      name: "Sugar",
-      safetyLevel: "caution",
-      description: "Simple carbohydrate that provides quick energy but lacks nutritional value.",
-      healthImpact: "High intake linked to obesity, dental issues, and blood sugar spikes. Daily limit exceeded in many processed foods.",
-      alternatives: "Try stevia, monk fruit, or reduce overall sweetness gradually",
-      dailyLimit: "25g recommended daily maximum"
-    },
-    "high fructose corn syrup": {
-      id: "hfcs",
-      name: "High Fructose Corn Syrup",
-      safetyLevel: "warning",
-      description: "Highly processed sweetener made from corn starch, cheaper alternative to sugar.",
-      healthImpact: "Linked to obesity, diabetes, fatty liver disease. Body processes it differently than regular sugar.",
-      alternatives: "Natural sweeteners like honey, maple syrup, or fruit",
-      dailyLimit: "Avoid when possible"
-    },
-    "yellow 5": {
-      id: "yellow5",
-      name: "Yellow 5 (Tartrazine)",
-      safetyLevel: "warning",
-      description: "Artificial food coloring derived from petroleum, used to create yellow color.",
-      healthImpact: "May cause hyperactivity in children, allergic reactions, and potential carcinogenic effects.",
-      alternatives: "Natural colorings like turmeric, annatto",
-      dailyLimit: "7.5mg/kg body weight"
-    },
-    "natural vanilla flavor": {
-      id: "vanilla",
-      name: "Natural Vanilla Flavor",
-      safetyLevel: "safe",
-      description: "Flavoring derived from vanilla beans, generally recognized as safe.",
-      healthImpact: "Minimal health impact, provides pleasant taste without significant nutritional value.",
-      alternatives: "Pure vanilla extract for more authentic flavor",
-      dailyLimit: "No specific limit established"
-    },
-    "organic whole grain oats": {
-      id: "oats",
-      name: "Organic Whole Grain Oats",
-      safetyLevel: "safe",
-      description: "Nutrient-rich whole grain providing fiber, protein, and essential minerals.",
-      healthImpact: "Supports heart health, digestive health, and provides sustained energy. Excellent nutritional profile.",
-      alternatives: "Other whole grains like quinoa, brown rice",
-      dailyLimit: "No upper limit - part of healthy diet"
-    }
-  };
+  // Analyze ingredients using the comprehensive database
 
   useEffect(() => {
     // Simulate analysis progress
@@ -83,21 +38,35 @@ export function IngredientAnalysis({ ingredients, onBackToScan }: IngredientAnal
         await new Promise(resolve => setTimeout(resolve, 200));
       }
 
-      // Process ingredients and create analysis
+      // Process ingredients using real database
       const analyzed = ingredients.map((ingredient, index) => {
         const cleanName = ingredient.toLowerCase().replace(/[()]/g, '').split(',')[0].trim();
-        const found = Object.values(mockAnalysisData).find(data => 
-          cleanName.includes(data.name.toLowerCase()) || 
-          data.name.toLowerCase().includes(cleanName)
-        );
+        const foundIngredient = findIngredient(cleanName);
 
-        return found || {
+        if (foundIngredient) {
+          const personalizedAnalysis = getPersonalizedAnalysis(foundIngredient, userAge);
+          return {
+            id: foundIngredient.id,
+            name: foundIngredient.name,
+            safetyLevel: personalizedAnalysis.riskLevel,
+            description: foundIngredient.description,
+            healthImpact: personalizedAnalysis.personalizedMessage,
+            alternatives: foundIngredient.alternatives,
+            dailyLimit: personalizedAnalysis.dailyLimit,
+            category: foundIngredient.category,
+            allergens: foundIngredient.allergens
+          };
+        }
+
+        // Unknown ingredient - classify as caution
+        return {
           id: `ingredient-${index}`,
           name: ingredient,
-          safetyLevel: Math.random() > 0.7 ? 'caution' : 'safe' as 'safe' | 'caution',
-          description: "Common food ingredient with standard safety profile.",
-          healthImpact: "Generally recognized as safe when consumed in normal amounts.",
-          dailyLimit: "Follow recommended serving sizes"
+          safetyLevel: 'caution' as 'caution',
+          description: "Ingredient not found in our database. Please research independently or consult a nutritionist.",
+          healthImpact: "Unknown ingredient - exercise caution and research further if you have health concerns.",
+          dailyLimit: "Follow product serving recommendations",
+          category: 'other'
         };
       });
 

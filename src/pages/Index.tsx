@@ -46,7 +46,7 @@ const Index = () => {
   }
 
   if (appState === 'analysis') {
-    return <IngredientAnalysis ingredients={scannedIngredients} onBackToScan={handleBackToScan} />;
+    return <IngredientAnalysis ingredients={scannedIngredients} onBackToScan={handleBackToScan} userAge={userData?.age} />;
   }
 
   return (
