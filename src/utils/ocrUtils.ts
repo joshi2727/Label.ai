@@ -23,10 +23,33 @@ export async function extractTextFromImage(imageFile: File | Blob | string): Pro
       await initializeOCR();
     }
 
+    console.log('Starting OCR recognition...');
     const { data: { text, confidence } } = await ocrWorker!.recognize(imageFile);
+    console.log('OCR Raw text:', text);
+    console.log('OCR Confidence:', confidence);
     
     // Parse ingredients from the extracted text
     const ingredients = parseIngredients(text);
+    console.log('Parsed ingredients:', ingredients);
+    
+    // If no ingredients found, provide fallback
+    if (ingredients.length === 0 && text.trim().length > 0) {
+      // Try splitting by common patterns as fallback
+      const fallbackIngredients = text
+        .toLowerCase()
+        .split(/[,\n;]/)
+        .map(item => item.trim())
+        .filter(item => item.length > 2 && item.length < 100)
+        .slice(0, 20); // Limit to reasonable number
+      
+      console.log('Using fallback ingredients:', fallbackIngredients);
+      
+      return {
+        text: text.trim(),
+        confidence,
+        ingredients: fallbackIngredients
+      };
+    }
     
     return {
       text: text.trim(),
@@ -42,14 +65,14 @@ export async function extractTextFromImage(imageFile: File | Blob | string): Pro
 export function parseIngredients(text: string): string[] {
   // Clean up the text
   let cleanText = text
-    .replace(/\\n/g, ' ')
-    .replace(/\\s+/g, ' ')
+    .replace(/\n/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
 
   // Look for common ingredient list patterns
   const ingredientPatterns = [
-    /ingredients?:?\\s*(.*?)(?=\\.|nutrition|allergen|contains|$)/i,
-    /contains?:?\\s*(.*?)(?=\\.|nutrition|allergen|ingredients|$)/i,
+    /ingredients?:?\s*(.*?)(?=\.|nutrition|allergen|contains|$)/i,
+    /contains?:?\s*(.*?)(?=\.|nutrition|allergen|ingredients|$)/i,
     // Fallback: use the entire text if no clear pattern
   ];
 
@@ -70,16 +93,16 @@ export function parseIngredients(text: string): string[] {
 
   // Split ingredients by common separators
   const rawIngredients = ingredientText
-    .split(/[,;]\\s*/)
+    .split(/[,;]\s*/)
     .map(ingredient => ingredient.trim())
     .filter(ingredient => ingredient.length > 1 && ingredient.length < 200);
 
   // Clean up each ingredient
   const cleanedIngredients = rawIngredients.map(ingredient => {
     return ingredient
-      .replace(/^\\d+\\.?\\s*/, '') // Remove numbering
-      .replace(/[\\[\\]()]/g, '') // Remove brackets temporarily for main ingredient
-      .replace(/\\.$/, '') // Remove trailing period
+      .replace(/^\d+\.?\s*/, '') // Remove numbering
+      .replace(/[\[\]()]/g, '') // Remove brackets temporarily for main ingredient
+      .replace(/\.$/, '') // Remove trailing period
       .trim();
   }).filter(ingredient => ingredient.length > 1);
 
