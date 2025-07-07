@@ -120,7 +120,7 @@ export async function researchIngredient(ingredientName: string, userAge: number
     .replace(/\s+/g, ' ')
     .trim();
   
-  // Check our enhanced knowledge base
+  // Check our enhanced knowledge base first
   const knownIngredient = findKnownIngredient(cleanName);
   
   if (knownIngredient) {
@@ -134,7 +134,8 @@ export async function researchIngredient(ingredientName: string, userAge: number
     };
   }
   
-  // Intelligent categorization for unknown ingredients
+  // For unknown ingredients, use intelligent categorization instead of web search
+  // This avoids CORS and API issues while still providing helpful information
   return categorizeUnknownIngredient(cleanName, ingredientName, userAge);
 }
 

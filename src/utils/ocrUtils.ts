@@ -11,9 +11,14 @@ let ocrWorker: Tesseract.Worker | null = null;
 export async function initializeOCR(): Promise<void> {
   if (ocrWorker) return;
   
-  ocrWorker = await createWorker('eng');
+  ocrWorker = await createWorker(['eng'], 1, {
+    logger: m => console.log(m)
+  });
+  
+  // Enhanced settings for better food label accuracy
   await ocrWorker.setParameters({
     tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789()[]{},.:-% ',
+    preserve_interword_spaces: '1',
   });
 }
 
