@@ -4,8 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { AlertTriangle, Shield, Info, ChevronRight } from 'lucide-react';
+import { AlertTriangle, Shield, Info, ChevronRight, ExternalLink } from 'lucide-react';
 import { findIngredient, getPersonalizedAnalysis, IngredientData } from '@/data/ingredientDatabase';
+import { researchIngredient } from '@/utils/webSearch';
 
 interface Ingredient {
   id: string;
@@ -15,6 +16,8 @@ interface Ingredient {
   healthImpact: string;
   alternatives?: string;
   dailyLimit?: string;
+  sources?: string[];
+  isResearched?: boolean;
 }
 
 interface IngredientAnalysisProps {
@@ -31,21 +34,26 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
   // Analyze ingredients using the comprehensive database
 
   useEffect(() => {
-    // Simulate analysis progress
     const analyzeIngredients = async () => {
-      for (let i = 0; i <= 100; i += 10) {
+      // Progress through analysis
+      for (let i = 0; i <= 50; i += 10) {
         setAnalysisProgress(i);
         await new Promise(resolve => setTimeout(resolve, 200));
       }
 
-      // Process ingredients using real database
-      const analyzed = ingredients.map((ingredient, index) => {
+      // Process ingredients using database and research
+      const analyzed: Ingredient[] = [];
+      
+      for (let index = 0; index < ingredients.length; index++) {
+        const ingredient = ingredients[index];
         const cleanName = ingredient.toLowerCase().replace(/[()]/g, '').split(',')[0].trim();
         const foundIngredient = findIngredient(cleanName);
 
+        setAnalysisProgress(50 + (index / ingredients.length) * 50);
+
         if (foundIngredient) {
           const personalizedAnalysis = getPersonalizedAnalysis(foundIngredient, userAge);
-          return {
+          analyzed.push({
             id: foundIngredient.id,
             name: foundIngredient.name,
             safetyLevel: personalizedAnalysis.riskLevel,
@@ -53,29 +61,45 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
             healthImpact: personalizedAnalysis.personalizedMessage,
             alternatives: foundIngredient.alternatives,
             dailyLimit: personalizedAnalysis.dailyLimit,
-            category: foundIngredient.category,
-            allergens: foundIngredient.allergens
-          };
+            isResearched: false
+          });
+        } else {
+          // Research unknown ingredient online
+          try {
+            console.log(`Researching unknown ingredient: ${ingredient}`);
+            const researchedData = await researchIngredient(ingredient, userAge);
+            analyzed.push({
+              id: `ingredient-${index}`,
+              name: researchedData.name,
+              safetyLevel: researchedData.safetyLevel,
+              description: researchedData.definition,
+              healthImpact: researchedData.healthImpacts,
+              dailyLimit: researchedData.dailyLimit,
+              sources: researchedData.sources,
+              isResearched: true
+            });
+          } catch (error) {
+            console.error(`Failed to research ingredient ${ingredient}:`, error);
+            // Fallback to basic analysis
+            analyzed.push({
+              id: `ingredient-${index}`,
+              name: ingredient,
+              safetyLevel: 'caution' as const,
+              description: `${ingredient} requires further research. Information from trusted sources was not immediately available.`,
+              healthImpact: "This ingredient needs individual assessment based on current scientific literature.",
+              dailyLimit: "Follow product serving recommendations and consult healthcare provider if needed",
+              isResearched: false
+            });
+          }
         }
-
-        // Unknown ingredient - classify as caution
-        return {
-          id: `ingredient-${index}`,
-          name: ingredient,
-          safetyLevel: 'caution' as 'caution',
-          description: "Ingredient not found in our database. Please research independently or consult a nutritionist.",
-          healthImpact: "Unknown ingredient - exercise caution and research further if you have health concerns.",
-          dailyLimit: "Follow product serving recommendations",
-          category: 'other'
-        };
-      });
+      }
 
       setAnalyzedIngredients(analyzed);
       setIsAnalyzing(false);
     };
 
     analyzeIngredients();
-  }, [ingredients]);
+  }, [ingredients, userAge]);
 
   const getSafetyIcon = (level: string) => {
     switch (level) {
@@ -232,6 +256,36 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
                       <div className="bg-success/10 p-3 rounded-lg">
                         <h4 className="font-medium text-sm mb-1">Healthier Alternatives:</h4>
                         <p className="text-sm">{ingredient.alternatives}</p>
+                      </div>
+                    )}
+
+                    {ingredient.isResearched && ingredient.sources && ingredient.sources.length > 0 && (
+                      <div className="bg-info/10 p-3 rounded-lg">
+                        <h4 className="font-medium text-sm mb-2 flex items-center">
+                          <ExternalLink className="h-3 w-3 mr-1" />
+                          Research Sources:
+                        </h4>
+                        <div className="space-y-1">
+                          {ingredient.sources.map((source, idx) => (
+                            <div key={idx} className="text-xs">
+                              {source.startsWith('http') ? (
+                                <a 
+                                  href={source} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className="text-primary hover:underline"
+                                >
+                                  {source.replace(/^https?:\/\//, '').split('/')[0]}
+                                </a>
+                              ) : (
+                                <span className="text-muted-foreground">{source}</span>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-2">
+                          Information researched from trusted health and nutrition sources
+                        </p>
                       </div>
                     )}
                   </AccordionContent>
