@@ -59,7 +59,7 @@ const Index = () => {
             <div className="mb-8">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-ingredient-slide">
                 <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                  SensiLabel
+                  label.ai
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-white/90 mb-8 animate-ingredient-slide" style={{ animationDelay: '200ms' }}>
@@ -109,7 +109,7 @@ const Index = () => {
       <section className="container mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-hero bg-clip-text text-transparent">
-            How SensiLabel Protects Your Health
+            How label.ai Protects Your Health
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Advanced AI technology meets personalized health insights to keep you informed about what you eat.
@@ -181,7 +181,7 @@ const Index = () => {
               <span className="bg-gradient-health bg-clip-text text-transparent"> Food Safety</span>
             </h3>
             <p className="text-muted-foreground">
-              Join thousands of health-conscious individuals who trust SensiLabel to make informed food choices. 
+              Join thousands of health-conscious individuals who trust label.ai to make informed food choices. 
               Our AI analyzes ingredients against your personal health profile to give you the confidence to eat safely.
             </p>
             
@@ -241,7 +241,7 @@ const Index = () => {
       <footer className="bg-card border-t py-8">
         <div className="container mx-auto px-4 text-center">
           <div className="mb-4">
-            <h4 className="text-lg font-semibold bg-gradient-hero bg-clip-text text-transparent">SensiLabel</h4>
+            <h4 className="text-lg font-semibold bg-gradient-hero bg-clip-text text-transparent">label.ai</h4>
             <p className="text-sm text-muted-foreground">Your AI-powered food safety companion</p>
           </div>
           <p className="text-xs text-muted-foreground">
