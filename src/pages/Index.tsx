@@ -53,29 +53,29 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-hero opacity-90"></div>
+        <div className="absolute inset-0 bg-gradient-hero opacity-90 animate-gradient-x"></div>
         <div className="relative container mx-auto px-4 py-20 text-center">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-ingredient-slide">
-                <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-slide-down">
+                <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent animate-float">
                   label.ai
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl text-white/90 mb-8 animate-ingredient-slide" style={{ animationDelay: '200ms' }}>
+              <p className="text-xl md:text-2xl text-white/90 mb-8 animate-slide-up" style={{ animationDelay: '200ms' }}>
                 AI-Powered Food Safety Scanner
               </p>
-              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto animate-ingredient-slide" style={{ animationDelay: '400ms' }}>
+              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '400ms' }}>
                 Instantly analyze ingredient lists, identify health risks, and get personalized recommendations based on your age and health goals.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-ingredient-slide" style={{ animationDelay: '600ms' }}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-scale-in" style={{ animationDelay: '600ms' }}>
               <Button 
                 variant="scanner" 
                 size="xl" 
                 onClick={() => setAppState('onboarding')}
-                className="min-w-[200px]"
+                className="min-w-[200px] hover:scale-105 transition-all duration-300 animate-shimmer bg-gradient-to-r from-primary via-primary-glow to-primary bg-[length:200%_100%]"
               >
                 <Camera className="mr-2 h-5 w-5" />
                 Start Scanning
@@ -83,7 +83,7 @@ const Index = () => {
               <Button 
                 variant="outline" 
                 size="xl"
-                className="bg-white/10 border-white/20 text-white hover:bg-white/20 min-w-[200px]"
+                className="bg-white/10 border-white/20 text-white hover:bg-white/20 min-w-[200px] hover:scale-105 transition-all duration-300 backdrop-blur-sm"
               >
                 <Brain className="mr-2 h-5 w-5" />
                 Learn How It Works
@@ -98,7 +98,7 @@ const Index = () => {
             <img 
               src={heroImage} 
               alt="AI-powered food scanning technology" 
-              className="w-full rounded-2xl shadow-2xl animate-ingredient-slide border-4 border-white/20"
+              className="w-full rounded-2xl shadow-2xl animate-rotate-in border-4 border-white/20 hover:scale-105 transition-transform duration-500"
               style={{ animationDelay: '800ms' }}
             />
           </div>
@@ -117,9 +117,9 @@ const Index = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group">
+          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group hover:scale-105 animate-slide-up" style={{ animationDelay: '100ms' }}>
             <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-safe rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-badge-bounce">
+              <div className="w-16 h-16 bg-gradient-safe rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-wiggle animate-morph">
                 <Camera className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold mb-2">Smart Scanning</h3>
@@ -129,9 +129,9 @@ const Index = () => {
             </CardContent>
           </Card>
 
-          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group">
+          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group hover:scale-105 animate-slide-up" style={{ animationDelay: '200ms' }}>
             <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-health rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-badge-bounce">
+              <div className="w-16 h-16 bg-gradient-health rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-wiggle animate-morph">
                 <Brain className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold mb-2">AI Analysis</h3>
@@ -141,9 +141,9 @@ const Index = () => {
             </CardContent>
           </Card>
 
-          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group">
+          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group hover:scale-105 animate-slide-up" style={{ animationDelay: '300ms' }}>
             <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-caution rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-badge-bounce">
+              <div className="w-16 h-16 bg-gradient-caution rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-wiggle animate-morph">
                 <Shield className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold mb-2">Personal Safety</h3>
@@ -153,9 +153,9 @@ const Index = () => {
             </CardContent>
           </Card>
 
-          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group">
+          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group hover:scale-105 animate-slide-up" style={{ animationDelay: '400ms' }}>
             <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-hero rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-badge-bounce">
+              <div className="w-16 h-16 bg-gradient-hero rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-wiggle animate-morph">
                 <Zap className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold mb-2">Instant Results</h3>
@@ -168,14 +168,14 @@ const Index = () => {
 
         {/* CTA Section */}
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <img 
-              src={healthyFoodsImage} 
-              alt="Healthy, natural food ingredients" 
-              className="w-full rounded-2xl shadow-lg"
-            />
-          </div>
-          <div className="space-y-6">
+            <div className="animate-scale-in" style={{ animationDelay: '600ms' }}>
+              <img 
+                src={healthyFoodsImage} 
+                alt="Healthy, natural food ingredients" 
+                className="w-full rounded-2xl shadow-lg hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          <div className="space-y-6 animate-slide-up" style={{ animationDelay: '700ms' }}>
             <h3 className="text-2xl md:text-3xl font-bold">
               Take Control of Your 
               <span className="bg-gradient-health bg-clip-text text-transparent"> Food Safety</span>
@@ -204,7 +204,7 @@ const Index = () => {
               variant="health" 
               size="lg" 
               onClick={() => setAppState('onboarding')}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto hover:scale-105 transition-all duration-300 animate-shimmer bg-gradient-to-r from-success via-primary to-success bg-[length:200%_100%]"
             >
               <Users className="mr-2 h-4 w-4" />
               Start Your Health Journey
@@ -214,23 +214,23 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-gradient-hero text-white py-16">
+      <section className="bg-gradient-hero text-white py-16 animate-gradient-x">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">50K+</div>
+            <div className="animate-scale-in" style={{ animationDelay: '100ms' }}>
+              <div className="text-3xl md:text-4xl font-bold mb-2 animate-float">50K+</div>
               <div className="text-white/80">Products Scanned</div>
             </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">99.9%</div>
+            <div className="animate-scale-in" style={{ animationDelay: '200ms' }}>
+              <div className="text-3xl md:text-4xl font-bold mb-2 animate-float" style={{ animationDelay: '500ms' }}>99.9%</div>
               <div className="text-white/80">Accuracy Rate</div>
             </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">15K+</div>
+            <div className="animate-scale-in" style={{ animationDelay: '300ms' }}>
+              <div className="text-3xl md:text-4xl font-bold mb-2 animate-float" style={{ animationDelay: '1s' }}>15K+</div>
               <div className="text-white/80">Active Users</div>
             </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">24/7</div>
+            <div className="animate-scale-in" style={{ animationDelay: '400ms' }}>
+              <div className="text-3xl md:text-4xl font-bold mb-2 animate-float" style={{ animationDelay: '1.5s' }}>24/7</div>
               <div className="text-white/80">Health Protection</div>
             </div>
           </div>
