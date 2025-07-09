@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Camera, Upload, Scan, X, RefreshCw } from 'lucide-react';
+import { Camera, Upload, Scan, X, RefreshCw, Sparkles } from 'lucide-react';
 import { extractTextFromImage, initializeOCR } from '@/utils/ocrUtils';
 import { useToast } from '@/hooks/use-toast';
 
@@ -74,14 +74,10 @@ export function CameraScanner({ onScanComplete }: CameraScannerProps) {
     
     if (!ctx) return;
 
-    // Set canvas size to match video
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-    
-    // Draw video frame to canvas
     ctx.drawImage(video, 0, 0);
     
-    // Convert to blob and process
     canvas.toBlob(async (blob) => {
       if (!blob) return;
       
@@ -164,52 +160,55 @@ export function CameraScanner({ onScanComplete }: CameraScannerProps) {
   }, [onScanComplete, toast]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-mesh flex items-center justify-center p-6">
       <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="w-20 h-20 bg-gradient-hero rounded-full mx-auto mb-4 flex items-center justify-center animate-scan-pulse">
-            <Camera className="h-10 w-10 text-white" />
+        <CardHeader className="text-center pb-4">
+          <div className="w-16 h-16 bg-primary/10 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+            <Camera className="h-8 w-8 text-primary" />
           </div>
-          <CardTitle className="text-2xl bg-gradient-hero bg-clip-text text-transparent">
+          <CardTitle className="text-2xl font-semibold text-foreground">
             Scan Ingredients
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-base leading-relaxed">
             Point your camera at the ingredient list or upload a photo
           </CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-6">
           {error && (
-            <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-3">
-              <p className="text-sm text-destructive">{error}</p>
+            <div className="bg-destructive/5 border border-destructive/20 rounded-xl p-4">
+              <p className="text-sm text-destructive mb-3">{error}</p>
               <Button 
                 variant="outline" 
                 size="sm" 
                 onClick={() => setError('')}
-                className="mt-2"
+                className="group"
               >
-                <RefreshCw className="mr-2 h-3 w-3" />
+                <RefreshCw className="mr-2 h-3 w-3 group-hover:rotate-180 transition-transform duration-500" />
                 Try Again
               </Button>
             </div>
           )}
 
           {isScanning ? (
-            <div className="text-center space-y-4">
-              <div className="w-full h-48 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center animate-scan-pulse">
-                <div className="flex flex-col items-center space-y-2">
-                  <Scan className="h-12 w-12 text-primary animate-spin" />
-                  <p className="text-sm text-muted-foreground">{ocrProgress || 'Analyzing ingredients...'}</p>
+            <div className="text-center space-y-6">
+              <div className="w-full h-48 bg-primary/5 rounded-xl flex items-center justify-center border border-primary/20">
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="relative">
+                    <Scan className="h-12 w-12 text-primary animate-soft-pulse" />
+                    <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-ping"></div>
+                  </div>
+                  <p className="text-sm text-muted-foreground font-medium">{ocrProgress || 'Analyzing ingredients...'}</p>
                 </div>
               </div>
               
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <div className="flex justify-center space-x-1">
                   {[1, 2, 3].map((i) => (
                     <div
                       key={i}
-                      className="w-2 h-2 bg-primary rounded-full animate-bounce"
-                      style={{ animationDelay: `${i * 0.1}s` }}
+                      className="w-2 h-2 bg-primary rounded-full animate-gentle-bounce"
+                      style={{ animationDelay: `${i * 0.2}s` }}
                     />
                   ))}
                 </div>
@@ -217,9 +216,8 @@ export function CameraScanner({ onScanComplete }: CameraScannerProps) {
               </div>
             </div>
           ) : isCameraActive ? (
-            <div className="space-y-4">
-              {/* Live camera preview */}
-              <div className="relative w-full h-48 bg-black rounded-lg overflow-hidden">
+            <div className="space-y-6">
+              <div className="relative w-full h-48 bg-black rounded-xl overflow-hidden">
                 <video
                   ref={videoRef}
                   autoPlay
@@ -227,22 +225,23 @@ export function CameraScanner({ onScanComplete }: CameraScannerProps) {
                   muted
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 border-2 border-dashed border-white/50 m-4 rounded-lg flex items-center justify-center">
-                  <p className="text-white text-sm bg-black/50 px-2 py-1 rounded">
-                    Position ingredient list here
-                  </p>
+                <div className="absolute inset-0 border-2 border-dashed border-white/50 m-4 rounded-xl flex items-center justify-center">
+                  <div className="text-center">
+                    <p className="text-white text-sm bg-black/50 px-3 py-2 rounded-lg backdrop-blur-sm">
+                      Position ingredient list here
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              {/* Camera controls */}
               <div className="grid grid-cols-2 gap-3">
                 <Button 
                   variant="scanner" 
                   size="lg" 
                   onClick={captureImage}
-                  className="flex-1"
+                  className="flex-1 group"
                 >
-                  <Camera className="mr-2 h-4 w-4" />
+                  <Camera className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
                   Capture
                 </Button>
                 
@@ -250,9 +249,9 @@ export function CameraScanner({ onScanComplete }: CameraScannerProps) {
                   variant="outline" 
                   size="lg" 
                   onClick={stopCamera}
-                  className="flex-1"
+                  className="flex-1 group"
                 >
-                  <X className="mr-2 h-4 w-4" />
+                  <X className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
                   Cancel
                 </Button>
               </div>
@@ -260,24 +259,22 @@ export function CameraScanner({ onScanComplete }: CameraScannerProps) {
               <canvas ref={canvasRef} className="hidden" />
             </div>
           ) : (
-            <div className="space-y-4">
-              {/* Camera preview area */}
-              <div className="w-full h-48 bg-gradient-to-br from-muted/50 to-muted rounded-lg border-2 border-dashed border-border flex items-center justify-center">
-                <div className="text-center space-y-2">
+            <div className="space-y-6">
+              <div className="w-full h-48 bg-muted/30 rounded-xl border-2 border-dashed border-border flex items-center justify-center">
+                <div className="text-center space-y-3">
                   <Camera className="h-12 w-12 text-muted-foreground mx-auto" />
                   <p className="text-sm text-muted-foreground">Tap scan to access camera</p>
                 </div>
               </div>
 
-              {/* Action buttons */}
               <div className="grid grid-cols-2 gap-3">
                 <Button 
                   variant="scanner" 
                   size="lg" 
                   onClick={handleScan}
-                  className="flex-1"
+                  className="flex-1 group"
                 >
-                  <Camera className="mr-2 h-4 w-4" />
+                  <Camera className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
                   Start Camera
                 </Button>
                 
@@ -285,17 +282,19 @@ export function CameraScanner({ onScanComplete }: CameraScannerProps) {
                   variant="outline" 
                   size="lg" 
                   onClick={handleUpload}
-                  className="flex-1"
+                  className="flex-1 group"
                 >
-                  <Upload className="mr-2 h-4 w-4" />
+                  <Upload className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
                   Upload Photo
                 </Button>
               </div>
 
-              {/* Tips */}
-              <div className="bg-primary/10 p-4 rounded-lg">
-                <h4 className="font-medium text-sm mb-2">📸 Scanning Tips:</h4>
-                <ul className="text-xs text-muted-foreground space-y-1">
+              <div className="bg-primary/5 p-4 rounded-xl border border-primary/20">
+                <h4 className="font-medium text-sm mb-3 flex items-center">
+                  <Sparkles className="h-4 w-4 mr-2 text-primary" />
+                  Scanning Tips:
+                </h4>
+                <ul className="text-xs text-muted-foreground space-y-2 leading-relaxed">
                   <li>• Ensure good lighting</li>
                   <li>• Keep text clear and readable</li>
                   <li>• Hold camera steady</li>

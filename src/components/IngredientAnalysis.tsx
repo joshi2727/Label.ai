@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { AlertTriangle, Shield, Info, ChevronRight, ExternalLink } from 'lucide-react';
+import { AlertTriangle, Shield, Info, ExternalLink, ArrowLeft, Lightbulb, CheckCircle } from 'lucide-react';
 import { findIngredient, getPersonalizedAnalysis, IngredientData } from '@/data/ingredientDatabase';
 import { researchIngredient } from '@/utils/webSearch';
 
@@ -31,17 +31,13 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
   const [analyzedIngredients, setAnalyzedIngredients] = useState<Ingredient[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(true);
 
-  // Analyze ingredients using the comprehensive database
-
   useEffect(() => {
     const analyzeIngredients = async () => {
-      // Progress through analysis
       for (let i = 0; i <= 50; i += 10) {
         setAnalysisProgress(i);
         await new Promise(resolve => setTimeout(resolve, 200));
       }
 
-      // Process ingredients using database and research
       const analyzed: Ingredient[] = [];
       
       for (let index = 0; index < ingredients.length; index++) {
@@ -64,7 +60,6 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
             isResearched: false
           });
         } else {
-          // Research unknown ingredient online
           try {
             console.log(`Researching unknown ingredient: ${ingredient}`);
             const researchedData = await researchIngredient(ingredient, userAge);
@@ -80,7 +75,6 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
             });
           } catch (error) {
             console.error(`Failed to research ingredient ${ingredient}:`, error);
-            // Fallback to basic analysis
             analyzed.push({
               id: `ingredient-${index}`,
               name: ingredient,
@@ -104,7 +98,7 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
   const getSafetyIcon = (level: string) => {
     switch (level) {
       case 'safe':
-        return <Shield className="h-4 w-4 text-success" />;
+        return <CheckCircle className="h-4 w-4 text-success" />;
       case 'caution':
         return <Info className="h-4 w-4 text-warning" />;
       case 'warning':
@@ -117,11 +111,11 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
   const getSafetyColor = (level: string) => {
     switch (level) {
       case 'safe':
-        return 'bg-success text-success-foreground';
+        return 'bg-success/10 text-success border-success/20';
       case 'caution':
-        return 'bg-warning text-warning-foreground';
+        return 'bg-warning/10 text-warning border-warning/20';
       case 'warning':
-        return 'bg-destructive text-destructive-foreground';
+        return 'bg-destructive/10 text-destructive border-destructive/20';
       default:
         return 'bg-muted text-muted-foreground';
     }
@@ -134,23 +128,30 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
 
   if (isAnalyzing) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-mesh flex items-center justify-center p-6">
         <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <div className="w-16 h-16 bg-gradient-hero rounded-full mx-auto mb-4 flex items-center justify-center animate-scan-pulse">
-              <span className="text-2xl text-white">🔬</span>
+          <CardHeader className="text-center pb-4">
+            <div className="w-16 h-16 bg-primary/10 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+              <div className="relative">
+                <span className="text-2xl">🔬</span>
+                <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-ping"></div>
+              </div>
             </div>
-            <CardTitle>Analyzing Ingredients</CardTitle>
-            <CardDescription>AI is researching each ingredient for safety</CardDescription>
+            <CardTitle className="text-xl font-semibold">Analyzing Ingredients</CardTitle>
+            <CardDescription className="text-base leading-relaxed">
+              AI is researching each ingredient for safety
+            </CardDescription>
           </CardHeader>
           
-          <CardContent className="space-y-4">
-            <Progress value={analysisProgress} className="w-full" />
-            <p className="text-sm text-center text-muted-foreground">
-              {analysisProgress < 50 ? 'Identifying ingredients...' :
-               analysisProgress < 80 ? 'Checking safety databases...' :
-               'Generating personalized report...'}
-            </p>
+          <CardContent className="space-y-6">
+            <div className="space-y-3">
+              <Progress value={analysisProgress} className="w-full h-2" />
+              <p className="text-sm text-center text-muted-foreground font-medium">
+                {analysisProgress < 50 ? 'Identifying ingredients...' :
+                 analysisProgress < 80 ? 'Checking safety databases...' :
+                 'Generating personalized report...'}
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -158,23 +159,23 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted p-4">
+    <div className="min-h-screen bg-gradient-mesh p-6">
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Overall Safety Verdict */}
-        <Card className={`border-2 ${overallSafety === 'safe' ? 'border-success animate-health-glow' : 
-                                     overallSafety === 'caution' ? 'border-warning animate-caution-pulse' : 
-                                     'border-destructive animate-caution-pulse'}`}>
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                overallSafety === 'safe' ? 'bg-gradient-safe animate-health-glow' :
-                overallSafety === 'caution' ? 'bg-gradient-caution' :
-                'bg-gradient-caution'
+        <Card className={`border-2 ${overallSafety === 'safe' ? 'border-success/30 bg-success/5' : 
+                                     overallSafety === 'caution' ? 'border-warning/30 bg-warning/5' : 
+                                     'border-destructive/30 bg-destructive/5'}`}>
+          <CardContent className="pt-8 pb-6">
+            <div className="flex items-center justify-center space-x-4 mb-6">
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
+                overallSafety === 'safe' ? 'bg-success/20' :
+                overallSafety === 'caution' ? 'bg-warning/20' :
+                'bg-destructive/20'
               }`}>
                 {getSafetyIcon(overallSafety)}
               </div>
               <div className="text-center">
-                <h2 className="text-2xl font-bold">
+                <h2 className="text-2xl font-semibold text-foreground mb-1">
                   {overallSafety === 'safe' ? 'Generally Safe' :
                    overallSafety === 'caution' ? 'Use with Caution' :
                    'Health Concerns'}
@@ -188,23 +189,23 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
             </div>
             
             <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <div className="text-2xl font-bold text-success">
+              <div className="p-3 bg-success/10 rounded-xl">
+                <div className="text-2xl font-bold text-success mb-1">
                   {analyzedIngredients.filter(i => i.safetyLevel === 'safe').length}
                 </div>
-                <div className="text-xs text-muted-foreground">Safe</div>
+                <div className="text-xs text-muted-foreground font-medium">Safe</div>
               </div>
-              <div>
-                <div className="text-2xl font-bold text-warning">
+              <div className="p-3 bg-warning/10 rounded-xl">
+                <div className="text-2xl font-bold text-warning mb-1">
                   {analyzedIngredients.filter(i => i.safetyLevel === 'caution').length}
                 </div>
-                <div className="text-xs text-muted-foreground">Caution</div>
+                <div className="text-xs text-muted-foreground font-medium">Caution</div>
               </div>
-              <div>
-                <div className="text-2xl font-bold text-destructive">
+              <div className="p-3 bg-destructive/10 rounded-xl">
+                <div className="text-2xl font-bold text-destructive mb-1">
                   {analyzedIngredients.filter(i => i.safetyLevel === 'warning').length}
                 </div>
-                <div className="text-xs text-muted-foreground">Warning</div>
+                <div className="text-xs text-muted-foreground font-medium">Warning</div>
               </div>
             </div>
           </CardContent>
@@ -212,60 +213,74 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
 
         {/* Ingredient Breakdown */}
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <span className="mr-2">📋</span>
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center text-xl font-semibold">
+              <span className="mr-3">📋</span>
               Ingredient Analysis
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-base leading-relaxed">
               Detailed breakdown of each ingredient and its health impact
             </CardDescription>
           </CardHeader>
           
           <CardContent>
-            <Accordion type="single" collapsible className="w-full">
+            <Accordion type="single" collapsible className="w-full space-y-2">
               {analyzedIngredients.map((ingredient, index) => (
-                <AccordionItem key={ingredient.id} value={`item-${index}`} className="animate-ingredient-slide" style={{ animationDelay: `${index * 100}ms` }}>
-                  <AccordionTrigger className="hover:no-underline">
+                <AccordionItem 
+                  key={ingredient.id} 
+                  value={`item-${index}`} 
+                  className="border rounded-xl px-4 animate-fade-in-up" 
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <AccordionTrigger className="hover:no-underline py-4">
                     <div className="flex items-center justify-between w-full mr-4">
                       <div className="flex items-center space-x-3">
                         {getSafetyIcon(ingredient.safetyLevel)}
                         <span className="font-medium text-left">{ingredient.name}</span>
                       </div>
-                      <Badge className={getSafetyColor(ingredient.safetyLevel)}>
+                      <Badge className={`${getSafetyColor(ingredient.safetyLevel)} border font-medium`}>
                         {ingredient.safetyLevel.toUpperCase()}
                       </Badge>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="space-y-3">
-                    <p className="text-sm text-muted-foreground">{ingredient.description}</p>
+                  <AccordionContent className="space-y-4 pb-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed">{ingredient.description}</p>
                     
-                    <div className="bg-muted/50 p-3 rounded-lg">
-                      <h4 className="font-medium text-sm mb-1">Health Impact:</h4>
-                      <p className="text-sm">{ingredient.healthImpact}</p>
+                    <div className="bg-muted/30 p-4 rounded-xl">
+                      <h4 className="font-medium text-sm mb-2 flex items-center">
+                        <Info className="h-4 w-4 mr-2" />
+                        Health Impact:
+                      </h4>
+                      <p className="text-sm leading-relaxed">{ingredient.healthImpact}</p>
                     </div>
 
                     {ingredient.dailyLimit && (
-                      <div className="bg-warning/10 p-3 rounded-lg">
-                        <h4 className="font-medium text-sm mb-1">Daily Limit:</h4>
-                        <p className="text-sm">{ingredient.dailyLimit}</p>
+                      <div className="bg-warning/10 p-4 rounded-xl border border-warning/20">
+                        <h4 className="font-medium text-sm mb-2 flex items-center">
+                          <AlertTriangle className="h-4 w-4 mr-2 text-warning" />
+                          Daily Limit:
+                        </h4>
+                        <p className="text-sm leading-relaxed">{ingredient.dailyLimit}</p>
                       </div>
                     )}
 
                     {ingredient.alternatives && (
-                      <div className="bg-success/10 p-3 rounded-lg">
-                        <h4 className="font-medium text-sm mb-1">Healthier Alternatives:</h4>
-                        <p className="text-sm">{ingredient.alternatives}</p>
+                      <div className="bg-success/10 p-4 rounded-xl border border-success/20">
+                        <h4 className="font-medium text-sm mb-2 flex items-center">
+                          <Lightbulb className="h-4 w-4 mr-2 text-success" />
+                          Healthier Alternatives:
+                        </h4>
+                        <p className="text-sm leading-relaxed">{ingredient.alternatives}</p>
                       </div>
                     )}
 
                     {ingredient.isResearched && ingredient.sources && ingredient.sources.length > 0 && (
-                      <div className="bg-info/10 p-3 rounded-lg">
-                        <h4 className="font-medium text-sm mb-2 flex items-center">
-                          <ExternalLink className="h-3 w-3 mr-1" />
+                      <div className="bg-primary/5 p-4 rounded-xl border border-primary/20">
+                        <h4 className="font-medium text-sm mb-3 flex items-center">
+                          <ExternalLink className="h-4 w-4 mr-2 text-primary" />
                           Research Sources:
                         </h4>
-                        <div className="space-y-1">
+                        <div className="space-y-2">
                           {ingredient.sources.map((source, idx) => (
                             <div key={idx} className="text-xs">
                               {source.startsWith('http') ? (
@@ -273,7 +288,7 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
                                   href={source} 
                                   target="_blank" 
                                   rel="noopener noreferrer" 
-                                  className="text-primary hover:underline"
+                                  className="text-primary hover:underline font-medium"
                                 >
                                   {source.replace(/^https?:\/\//, '').split('/')[0]}
                                 </a>
@@ -283,7 +298,7 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
                             </div>
                           ))}
                         </div>
-                        <p className="text-xs text-muted-foreground mt-2">
+                        <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
                           Information researched from trusted health and nutrition sources
                         </p>
                       </div>
@@ -297,11 +312,12 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
 
         {/* Action buttons */}
         <div className="flex gap-3">
-          <Button variant="outline" onClick={onBackToScan} className="flex-1">
+          <Button variant="outline" onClick={onBackToScan} className="flex-1 group">
+            <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
             Scan Another Product
           </Button>
-          <Button variant="health" className="flex-1">
-            <span className="mr-2">💡</span>
+          <Button variant="default" className="flex-1 group">
+            <Lightbulb className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
             Find Alternatives
           </Button>
         </div>
