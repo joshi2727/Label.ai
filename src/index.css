@@ -148,15 +148,56 @@
     background: rgba(255, 255, 255, 0.8);
   }
   
+  /* Main background gradient */
   .gradient-mesh {
     background: linear-gradient(135deg, 
       hsl(var(--background)) 0%, 
-      hsl(var(--muted)) 50%, 
+      hsl(var(--muted)) 25%,
+      hsl(var(--background)) 50%,
+      hsl(var(--muted)) 75%,
       hsl(var(--background)) 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+  
+  /* Hero section gradient */
+  .hero-gradient {
+    background: linear-gradient(135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary-light)) 50%,
+      hsl(var(--accent)) 100%);
+  }
+  
+  /* Card gradients for different states */
+  .gradient-safe {
+    background: linear-gradient(135deg,
+      hsl(var(--success) / 0.1) 0%,
+      hsl(var(--success) / 0.05) 100%);
+  }
+  
+  .gradient-caution {
+    background: linear-gradient(135deg,
+      hsl(var(--warning) / 0.1) 0%,
+      hsl(var(--warning) / 0.05) 100%);
+  }
+  
+  .gradient-warning {
+    background: linear-gradient(135deg,
+      hsl(var(--destructive) / 0.1) 0%,
+      hsl(var(--destructive) / 0.05) 100%);
   }
 }
 
 /* Custom animations for smooth interactions */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 @keyframes gentle-bounce {
   0%, 20%, 53%, 80%, 100% {
     transform: translate3d(0,0,0);
@@ -205,6 +246,15 @@
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 .animate-gentle-bounce {
   animation: gentle-bounce 1s ease-in-out;
 }
@@ -221,6 +271,15 @@
   animation: scale-in 0.3s ease-out;
 }
 
+.animate-shimmer {
+  background: linear-gradient(90deg, 
+    hsl(var(--primary)) 0%, 
+    hsl(var(--primary-light)) 50%, 
+    hsl(var(--primary)) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
 /* Smooth transitions for all interactive elements */
 .transition-smooth {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -228,4 +287,22 @@
 
 .transition-gentle {
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary-light));
 }
