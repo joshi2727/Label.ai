@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
-import { User, Target, Shield, Sparkles, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface OnboardingFlowProps {
   onComplete: (userData: UserData) => void;
@@ -65,33 +64,33 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
     switch (step) {
       case 1:
         return (
-          <Card className="w-full max-w-md animate-scale-in">
-            <CardHeader className="text-center pb-4">
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                <User className="h-8 w-8 text-primary" />
+          <Card className="w-full max-w-md animate-ingredient-slide">
+            <CardHeader className="text-center">
+              <div className="w-16 h-16 bg-gradient-health rounded-full mx-auto mb-4 flex items-center justify-center animate-badge-bounce">
+                <span className="text-2xl text-white">👋</span>
               </div>
-              <CardTitle className="text-2xl font-semibold text-foreground">
-                Welcome to label.ai
+              <CardTitle className="text-2xl bg-gradient-hero bg-clip-text text-transparent">
+                Welcome to SensiLabel!
               </CardTitle>
-              <CardDescription className="text-base leading-relaxed">
+              <CardDescription>
                 Let's personalize your food safety experience
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm font-medium">What's your name?</Label>
+            <CardContent className="space-y-4">
+              <div>
+                <Label htmlFor="name">What's your name?</Label>
                 <Input
                   id="name"
                   value={userData.name}
                   onChange={(e) => setUserData(prev => ({ ...prev, name: e.target.value }))}
                   placeholder="Enter your name"
-                  className="h-12 rounded-xl border-input bg-background"
+                  className="mt-2"
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="age" className="text-sm font-medium">What's your age range?</Label>
+              <div>
+                <Label htmlFor="age">What's your age?</Label>
                 <Select onValueChange={(value) => setUserData(prev => ({ ...prev, age: parseInt(value) }))}>
-                  <SelectTrigger className="h-12 rounded-xl border-input bg-background">
+                  <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Select your age range" />
                   </SelectTrigger>
                   <SelectContent>
@@ -111,27 +110,26 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
 
       case 2:
         return (
-          <Card className="w-full max-w-md animate-scale-in">
-            <CardHeader className="text-center pb-4">
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                <Target className="h-8 w-8 text-primary" />
+          <Card className="w-full max-w-md animate-ingredient-slide">
+            <CardHeader className="text-center">
+              <div className="w-16 h-16 bg-gradient-safe rounded-full mx-auto mb-4 flex items-center justify-center animate-health-glow">
+                <span className="text-2xl text-white">🎯</span>
               </div>
-              <CardTitle className="text-xl font-semibold">Health Goals</CardTitle>
-              <CardDescription className="text-base leading-relaxed">
+              <CardTitle className="text-xl">Health Goals</CardTitle>
+              <CardDescription>
                 What are your main health priorities?
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {['Weight Management', 'Heart Health', 'Digestive Health', 'Energy Boost', 'Immune Support', 'General Wellness'].map((goal) => (
-                  <div key={goal} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div key={goal} className="flex items-center space-x-2">
                     <Checkbox
                       id={goal}
                       checked={userData.healthGoals.includes(goal)}
                       onCheckedChange={(checked) => updateHealthGoals(goal, checked as boolean)}
-                      className="rounded-md"
                     />
-                    <Label htmlFor={goal} className="text-sm font-medium leading-none cursor-pointer flex-1">
+                    <Label htmlFor={goal} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                       {goal}
                     </Label>
                   </div>
@@ -143,27 +141,26 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
 
       case 3:
         return (
-          <Card className="w-full max-w-md animate-scale-in">
-            <CardHeader className="text-center pb-4">
-              <div className="w-16 h-16 bg-warning/10 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                <Shield className="h-8 w-8 text-warning" />
+          <Card className="w-full max-w-md animate-ingredient-slide">
+            <CardHeader className="text-center">
+              <div className="w-16 h-16 bg-gradient-caution rounded-full mx-auto mb-4 flex items-center justify-center animate-caution-pulse">
+                <span className="text-2xl text-white">⚠️</span>
               </div>
-              <CardTitle className="text-xl font-semibold">Allergies & Restrictions</CardTitle>
-              <CardDescription className="text-base leading-relaxed">
+              <CardTitle className="text-xl">Allergies & Restrictions</CardTitle>
+              <CardDescription>
                 Help us keep you safe by identifying any allergies
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {['Nuts', 'Dairy', 'Gluten', 'Shellfish', 'Eggs', 'Soy', 'Fish', 'Sesame'].map((allergy) => (
-                  <div key={allergy} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div key={allergy} className="flex items-center space-x-2">
                     <Checkbox
                       id={allergy}
                       checked={userData.allergies.includes(allergy)}
                       onCheckedChange={(checked) => updateAllergies(allergy, checked as boolean)}
-                      className="rounded-md"
                     />
-                    <Label htmlFor={allergy} className="text-sm font-medium leading-none cursor-pointer flex-1">
+                    <Label htmlFor={allergy} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                       {allergy}
                     </Label>
                   </div>
@@ -175,29 +172,23 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
 
       case 4:
         return (
-          <Card className="w-full max-w-md animate-scale-in">
-            <CardHeader className="text-center pb-4">
-              <div className="w-16 h-16 bg-success/10 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                <Sparkles className="h-8 w-8 text-success" />
+          <Card className="w-full max-w-md animate-ingredient-slide">
+            <CardHeader className="text-center">
+              <div className="w-16 h-16 bg-gradient-hero rounded-full mx-auto mb-4 flex items-center justify-center animate-badge-bounce">
+                <span className="text-2xl text-white">✨</span>
               </div>
-              <CardTitle className="text-xl font-semibold">You're All Set!</CardTitle>
-              <CardDescription className="text-base leading-relaxed">
+              <CardTitle className="text-xl">You're All Set!</CardTitle>
+              <CardDescription>
                 Ready to start scanning and analyzing your food ingredients
               </CardDescription>
             </CardHeader>
-            <CardContent className="text-center space-y-6">
-              <div className="p-6 bg-success/5 rounded-xl border border-success/20">
-                <h3 className="font-semibold text-success mb-3">Profile Summary</h3>
-                <div className="text-sm text-muted-foreground space-y-2 leading-relaxed">
-                  <p>
-                    Hi <span className="font-medium text-foreground">{userData.name}</span>! We'll personalize ingredient analysis based on your age ({userData.age}) and health goals.
-                  </p>
-                  {userData.allergies.length > 0 && (
-                    <p>
-                      We'll also watch out for your allergies: <span className="font-medium text-foreground">{userData.allergies.join(', ')}</span>.
-                    </p>
-                  )}
-                </div>
+            <CardContent className="text-center space-y-4">
+              <div className="p-4 bg-gradient-safe rounded-lg text-white">
+                <h3 className="font-semibold">Profile Summary</h3>
+                <p className="text-sm mt-2">
+                  Hi {userData.name}! We'll personalize ingredient analysis based on your age ({userData.age}) 
+                  and health goals. {userData.allergies.length > 0 && `We'll also watch out for your allergies: ${userData.allergies.join(', ')}.`}
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -209,47 +200,33 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-mesh flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {renderStep()}
         
-        <div className="flex justify-between items-center mt-8">
-          {step > 1 ? (
-            <Button variant="outline" onClick={handlePrevious} className="group">
-              <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+        <div className="flex justify-between mt-6">
+          {step > 1 && (
+            <Button variant="outline" onClick={handlePrevious}>
               Previous
             </Button>
-          ) : (
-            <div />
           )}
-          
+          <div className="flex-1" />
           <Button 
-            variant={step === 4 ? "success" : "default"} 
+            variant={step === 4 ? "health" : "default"} 
             onClick={handleNext}
             disabled={step === 1 && (!userData.name || !userData.age)}
-            className="group"
           >
-            {step === 4 ? (
-              <>
-                <Sparkles className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                Start Scanning!
-              </>
-            ) : (
-              <>
-                Next
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </>
-            )}
+            {step === 4 ? "Start Scanning!" : "Next"}
           </Button>
         </div>
 
         {/* Progress indicator */}
-        <div className="flex justify-center mt-6 space-x-2">
+        <div className="flex justify-center mt-4 space-x-2">
           {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                i <= step ? 'bg-primary w-6' : 'bg-muted'
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                i <= step ? 'bg-primary' : 'bg-muted'
               }`}
             />
           ))}
