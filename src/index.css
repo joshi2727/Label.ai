@@ -3,41 +3,44 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Label.ai Design System - Mental Health App Inspired */
+/* Label.ai Design System - Modern Mental Health App Inspired */
 
 @layer base {
   :root {
-    /* Core Brand Colors - Soft & Calming */
-    --background: 248 250 252;
-    --foreground: 51 65 85;
+    /* Modern Soft Color Palette */
+    --background: 248 250 252;        /* Soft gray-blue */
+    --foreground: 51 65 85;           /* Deep slate */
 
-    /* Soft Color Palette */
-    --primary: 99 102 241;        /* Soft Indigo */
+    /* Primary - Soft Indigo */
+    --primary: 99 102 241;
     --primary-foreground: 255 255 255;
     --primary-light: 129 140 248;
     --primary-muted: 238 242 255;
     
-    --secondary: 156 163 175;     /* Soft Gray */
+    /* Secondary - Warm Gray */
+    --secondary: 148 163 184;
     --secondary-foreground: 255 255 255;
-    --secondary-light: 209 213 219;
-    --secondary-muted: 249 250 251;
+    --secondary-light: 203 213 225;
+    --secondary-muted: 248 250 252;
     
-    --accent: 34 197 94;          /* Soft Green */
+    /* Accent - Soft Teal */
+    --accent: 20 184 166;
     --accent-foreground: 255 255 255;
-    --accent-light: 74 222 128;
-    --accent-muted: 240 253 244;
+    --accent-light: 45 212 191;
+    --accent-muted: 240 253 250;
     
-    --success: 34 197 94;         /* Calming Green */
+    /* Status Colors - Muted & Calming */
+    --success: 34 197 94;
     --success-foreground: 255 255 255;
     --success-light: 74 222 128;
     --success-muted: 240 253 244;
     
-    --warning: 251 146 60;        /* Soft Orange */
+    --warning: 245 158 11;
     --warning-foreground: 255 255 255;
-    --warning-light: 253 186 116;
-    --warning-muted: 255 247 237;
+    --warning-light: 251 191 36;
+    --warning-muted: 255 251 235;
     
-    --destructive: 239 68 68;     /* Soft Red */
+    --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
     --destructive-light: 248 113 113;
     --destructive-muted: 254 242 242;
@@ -52,25 +55,26 @@
     --muted: 248 250 252;
     --muted-foreground: 100 116 139;
     --border: 226 232 240;
-    --input: 241 245 249;
+    --input: 248 250 252;
     --ring: 99 102 241;
 
-    /* Soft Gradients */
+    /* Modern Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 100%);
     --gradient-success: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(var(--success-light)) 100%);
     --gradient-warning: linear-gradient(135deg, hsl(var(--warning)) 0%, hsl(var(--warning-light)) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
-    --gradient-mesh: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 50%, hsl(var(--primary-muted)) 100%);
+    --gradient-mesh: linear-gradient(135deg, 
+      hsl(var(--background)) 0%, 
+      hsl(var(--muted)) 25%, 
+      hsl(var(--primary-muted)) 50%, 
+      hsl(var(--accent-muted)) 75%, 
+      hsl(var(--background)) 100%);
     
     /* Soft Shadows */
     --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
     --shadow-medium: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     --shadow-large: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --shadow-glow: 0 0 0 1px hsl(var(--primary) / 0.1), 0 0 20px hsl(var(--primary) / 0.1);
-    
-    /* Animation Timings */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
     --radius: 1rem;
   }
@@ -126,7 +130,7 @@
 }
 
 @layer components {
-  /* Soft Background Patterns */
+  /* Background Patterns */
   .bg-mesh {
     background: var(--gradient-mesh);
     background-size: 400% 400%;
@@ -145,8 +149,8 @@
     background: var(--gradient-warning);
   }
 
-  /* Card Styles */
-  .card-soft {
+  /* Modern Card Styles */
+  .card-modern {
     @apply bg-card rounded-2xl shadow-soft border border-border/50;
     backdrop-filter: blur(10px);
   }
@@ -156,9 +160,9 @@
   }
 
   /* Button Styles */
-  .btn-soft {
-    @apply rounded-xl px-6 py-3 font-medium transition-all duration-300;
-    @apply hover:scale-105 active:scale-95;
+  .btn-modern {
+    @apply rounded-2xl px-6 py-3 font-medium transition-all duration-300;
+    @apply hover:scale-[1.02] active:scale-[0.98];
   }
 
   .btn-primary {
@@ -172,8 +176,8 @@
   }
 
   /* Input Styles */
-  .input-soft {
-    @apply bg-input border-0 rounded-xl px-4 py-3 text-foreground;
+  .input-modern {
+    @apply bg-input border-0 rounded-2xl px-4 py-3 text-foreground;
     @apply focus:ring-2 focus:ring-primary/20 focus:bg-card;
     @apply transition-all duration-300;
   }
@@ -188,7 +192,7 @@
 
   /* Loading States */
   .loading-pulse {
-    @apply animate-pulse bg-muted rounded-xl;
+    @apply animate-pulse bg-muted rounded-2xl;
   }
 
   /* Status Indicators */
@@ -246,6 +250,11 @@
     100% { transform: translateX(100%); }
   }
 
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
   .animate-gradient-shift {
     animation: gradient-shift 20s ease infinite;
   }
@@ -266,6 +275,10 @@
     animation: shimmer 2s infinite;
   }
 
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
   /* Hover Effects */
   .hover-lift {
     @apply transition-all duration-300 hover:shadow-medium hover:-translate-y-1;
@@ -280,7 +293,7 @@
   }
 
   /* Focus States */
-  .focus-soft {
+  .focus-modern {
     @apply focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:ring-offset-background;
   }
 }
