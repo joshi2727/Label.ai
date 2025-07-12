@@ -5,27 +5,30 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow-soft hover:bg-primary/90 hover:scale-105 active:scale-95",
-        destructive: "bg-destructive text-destructive-foreground shadow-soft hover:bg-destructive/90 hover:scale-105 active:scale-95",
-        outline: "border border-border bg-card hover:bg-muted hover:text-accent-foreground hover:scale-105 active:scale-95 shadow-soft",
-        secondary: "bg-secondary text-secondary-foreground shadow-soft hover:bg-secondary/80 hover:scale-105 active:scale-95",
-        ghost: "hover:bg-muted hover:text-accent-foreground hover:scale-105 active:scale-95",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-health",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        success: "bg-success text-success-foreground shadow-soft hover:bg-success/90 hover:scale-105 active:scale-95",
-        warning: "bg-warning text-warning-foreground shadow-soft hover:bg-warning/90 hover:scale-105 active:scale-95",
-        soft: "bg-muted text-foreground shadow-soft hover:bg-muted/80 hover:scale-105 active:scale-95",
-        gradient: "bg-gradient-primary text-white shadow-medium hover:shadow-large hover:scale-105 active:scale-95"
+        health: "bg-gradient-health text-white hover:shadow-health transition-all duration-300 animate-health-glow",
+        safe: "bg-gradient-safe text-white hover:shadow-glow",
+        caution: "bg-gradient-caution text-white hover:shadow-caution animate-caution-pulse",
+        scanner: "bg-gradient-hero text-white hover:scale-105 transition-all duration-300 shadow-health animate-scan-pulse"
       },
       size: {
-        default: "h-12 px-6 py-3",
-        sm: "h-10 rounded-xl px-4",
-        lg: "h-14 rounded-2xl px-8 text-base",
-        xl: "h-16 rounded-2xl px-10 text-lg font-semibold",
-        icon: "h-12 w-12",
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        xl: "h-14 rounded-lg px-10 text-lg",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {
