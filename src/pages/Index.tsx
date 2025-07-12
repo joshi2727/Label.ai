@@ -48,65 +48,129 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-mesh">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="container mx-auto px-6 py-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 bg-primary-muted text-primary px-4 py-2 rounded-2xl text-sm font-medium mb-6">
-                <Sparkles className="h-4 w-4" />
-                AI-Powered Food Safety
-              </div>
-              <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-                <span className="text-gradient">Label.ai</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                Instantly analyze ingredient lists with AI-powered food safety scanning
-              </p>
-              <p className="text-lg text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-                Get personalized health insights, identify potential risks, and make informed food choices with our advanced AI technology.
-              </p>
-            </div>
+    // <div className="min-h-screen bg-mesh">
+    //   {/* Hero Section */}
+    //   <section className="relative overflow-hidden">
+    //     <div className="container mx-auto px-6 py-20">
+    //       <div className="max-w-4xl mx-auto text-center">
+    //         <div className="mb-8 animate-fade-in-up">
+    //           <div className="inline-flex items-center gap-2 bg-primary-muted text-primary px-4 py-2 rounded-2xl text-sm font-medium mb-6">
+    //             <Sparkles className="h-4 w-4" />
+    //             AI-Powered Food Safety
+    //           </div>
+    //           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
+    //             <span className="text-gradient">Label.ai</span>
+    //           </h1>
+    //           <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
+    //             Instantly analyze ingredient lists with AI-powered food safety scanning
+    //           </p>
+    //           <p className="text-lg text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+    //             Get personalized health insights, identify potential risks, and make informed food choices with our advanced AI technology.
+    //           </p>
+    //         </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-              <Button 
-                variant="gradient" 
-                size="xl" 
-                onClick={() => setAppState('onboarding')}
-                className="min-w-[200px] group"
-              >
-                <Camera className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                Start Scanning
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="xl"
-                className="min-w-[200px] group"
-              >
-                <Brain className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                Learn More
-              </Button>
-            </div>
+    //         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+    //           <Button 
+    //             variant="gradient" 
+    //             size="xl" 
+    //             onClick={() => setAppState('onboarding')}
+    //             className="min-w-[200px] group"
+    //           >
+    //             <Camera className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+    //             Start Scanning
+    //             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+    //           </Button>
+    //           <Button 
+    //             variant="outline" 
+    //             size="xl"
+    //             className="min-w-[200px] group"
+    //           >
+    //             <Brain className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+    //             Learn More
+    //           </Button>
+    //         </div>
 
-            {/* Hero Image Placeholder */}
-            <div className="relative max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '400ms' }}>
-              <div className="bg-gradient-primary rounded-3xl p-8 shadow-large">
-                <div className="bg-card rounded-2xl p-8 flex items-center justify-center min-h-[300px]">
-                  <div className="text-center">
-                    <div className="w-24 h-24 bg-primary-muted rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                      <Camera className="h-12 w-12 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">AI-Powered Scanning</h3>
-                    <p className="text-muted-foreground">Advanced OCR and machine learning for instant ingredient analysis</p>
-                  </div>
+    //         {/* Hero Image Placeholder */}
+    //         <div className="relative max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+    //           <div className="bg-gradient-primary rounded-3xl p-8 shadow-large">
+    //             <div className="bg-card rounded-2xl p-8 flex items-center justify-center min-h-[300px]">
+    //               <div className="text-center">
+    //                 <div className="w-24 h-24 bg-primary-muted rounded-2xl mx-auto mb-4 flex items-center justify-center">
+    //                   <Camera className="h-12 w-12 text-primary" />
+    //                 </div>
+    //                 <h3 className="text-xl font-semibold text-foreground mb-2">AI-Powered Scanning</h3>
+    //                 <p className="text-muted-foreground">Advanced OCR and machine learning for instant ingredient analysis</p>
+    //               </div>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </section>
+
+    <div className="relative min-h-screen bg-gradient-to-br from-[#1e293b] via-[#0f172a] to-[#1e293b] text-white">
+  {/* Dark overlay if needed */}
+  <div className="absolute inset-0 bg-black/40 z-0" />
+
+  <section className="relative z-10 overflow-hidden">
+    <div className="container mx-auto px-6 py-20">
+      <div className="max-w-4xl mx-auto text-center">
+        <div className="mb-8 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-2xl text-sm font-medium mb-6">
+            <Sparkles className="h-4 w-4" />
+            AI-Powered Food Safety
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Label.ai</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-neutral-200 mb-8 leading-relaxed max-w-2xl mx-auto">
+            Instantly analyze ingredient lists with AI-powered food safety scanning
+          </p>
+          <p className="text-lg text-neutral-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Get personalized health insights, identify potential risks, and make informed food choices with our advanced AI technology.
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+          <Button 
+            variant="gradient" 
+            size="xl" 
+            onClick={() => setAppState('onboarding')}
+            className="min-w-[200px] group"
+          >
+            <Camera className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+            Start Scanning
+            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Button>
+          <Button 
+            variant="outline" 
+            size="xl"
+            className="min-w-[200px] group border-white text-white hover:bg-white hover:text-black transition"
+          >
+            <Brain className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+            Learn More
+          </Button>
+        </div>
+
+        {/* Hero Image Placeholder */}
+        <div className="relative max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+          <div className="bg-white/10 rounded-3xl p-8 shadow-large backdrop-blur-md">
+            <div className="bg-white/5 rounded-2xl p-8 flex items-center justify-center min-h-[300px]">
+              <div className="text-center">
+                <div className="w-24 h-24 bg-white/10 rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                  <Camera className="h-12 w-12 text-yellow-300" />
                 </div>
+                <h3 className="text-xl font-semibold mb-2 text-white">AI-Powered Scanning</h3>
+                <p className="text-neutral-300">Advanced OCR and machine learning for instant ingredient analysis</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
+</div>
+
 
       {/* Features Section */}
       <section className="container mx-auto px-6 py-20">
