@@ -237,7 +237,7 @@ export function CameraScanner({ onScanComplete }: CameraScannerProps) {
               {/* Camera controls */}
               <div className="grid grid-cols-2 gap-3">
                 <Button 
-                  variant="scanner" 
+                  variant="hero" 
                   size="lg" 
                   onClick={captureImage}
                   className="flex-1"
@@ -272,7 +272,7 @@ export function CameraScanner({ onScanComplete }: CameraScannerProps) {
               {/* Action buttons */}
               <div className="grid grid-cols-2 gap-3">
                 <Button 
-                  variant="scanner" 
+                  variant="hero" 
                   size="lg" 
                   onClick={handleScan}
                   className="flex-1"

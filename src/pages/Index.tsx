@@ -50,163 +50,172 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-hero opacity-90"></div>
-        <div className="relative container mx-auto px-4 py-20 text-center">
+      <section className="relative overflow-hidden bg-gradient-hero py-24 lg:py-32">
+        <div className="absolute inset-0 bg-gradient-to-br from-background/10 via-transparent to-background/5"></div>
+        
+        {/* Floating elements for visual interest */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-float"></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-secondary/10 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-20 left-20 w-12 h-12 bg-accent/10 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
+        
+        <div className="relative container mx-auto px-6 text-center">
           <div className="max-w-4xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-ingredient-slide">
-                <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                  SensiLabel
-                </span>
+            <div className="mb-12 space-y-6">
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in-up tracking-tight">
+                Labal.ai
               </h1>
-              <p className="text-xl md:text-2xl text-white/90 mb-8 animate-ingredient-slide" style={{ animationDelay: '200ms' }}>
-                AI-Powered Food Safety Scanner
+              <p className="text-xl md:text-2xl text-white/90 mb-6 animate-fade-in-up font-medium" style={{ animationDelay: '200ms' }}>
+                Smart Food Safety Analysis
               </p>
-              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto animate-ingredient-slide" style={{ animationDelay: '400ms' }}>
-                Instantly analyze ingredient lists, identify health risks, and get personalized recommendations based on your age and health goals.
+              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto animate-fade-in-up leading-relaxed" style={{ animationDelay: '400ms' }}>
+                Discover what's really in your food with AI-powered ingredient analysis. Get personalized health insights tailored to your age and dietary needs.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-ingredient-slide" style={{ animationDelay: '600ms' }}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
               <Button 
-                variant="scanner" 
+                variant="hero" 
                 size="xl" 
                 onClick={() => setAppState('onboarding')}
-                className="min-w-[200px]"
+                className="min-w-[220px] font-medium"
               >
-                <Camera className="mr-2 h-5 w-5" />
+                <Camera className="mr-3 h-5 w-5" />
                 Start Scanning
               </Button>
               <Button 
                 variant="outline" 
                 size="xl"
-                className="bg-white/10 border-white/20 text-white hover:bg-white/20 min-w-[200px]"
+                className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 min-w-[220px] font-medium"
               >
-                <Brain className="mr-2 h-5 w-5" />
-                Learn How It Works
+                <Brain className="mr-3 h-5 w-5" />
+                See How It Works
               </Button>
             </div>
-          </div>
-        </div>
-        
-        {/* Hero Image */}
-        <div className="relative container mx-auto px-4 -mt-10">
-          <div className="max-w-3xl mx-auto">
-            <img 
-              src={heroImage} 
-              alt="AI-powered food scanning technology" 
-              className="w-full rounded-2xl shadow-2xl animate-ingredient-slide border-4 border-white/20"
-              style={{ animationDelay: '800ms' }}
-            />
+            
+            {/* Hero Image */}
+            <div className="max-w-4xl mx-auto animate-fade-in-scale" style={{ animationDelay: '800ms' }}>
+              <div className="relative">
+                <img 
+                  src={heroImage} 
+                  alt="AI-powered food scanning interface" 
+                  className="w-full rounded-3xl shadow-large hover:shadow-glow transition-all duration-500"
+                />
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-hero bg-clip-text text-transparent">
-            How SensiLabel Protects Your Health
+      <section className="container mx-auto px-6 py-24 lg:py-32">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">
+            How Labal.ai Works
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Advanced AI technology meets personalized health insights to keep you informed about what you eat.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Advanced AI technology meets personalized health insights to give you complete transparency about your food choices.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-safe rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-badge-bounce">
-                <Camera className="h-8 w-8 text-white" />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          <Card className="text-center group hover:scale-[1.02] transition-all duration-300 border-0">
+            <CardContent className="pt-8">
+              <div className="w-20 h-20 bg-gradient-primary rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:animate-subtle-bounce shadow-soft">
+                <Camera className="h-9 w-9 text-white" />
               </div>
-              <h3 className="font-semibold mb-2">Smart Scanning</h3>
-              <p className="text-sm text-muted-foreground">
-                Advanced OCR technology instantly extracts and identifies all ingredients from packaging
+              <h3 className="text-lg font-semibold mb-3 text-foreground">Smart Scanning</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Capture ingredients instantly with our advanced OCR technology that reads any label
               </p>
             </CardContent>
           </Card>
 
-          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-health rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-badge-bounce">
-                <Brain className="h-8 w-8 text-white" />
+          <Card className="text-center group hover:scale-[1.02] transition-all duration-300 border-0">
+            <CardContent className="pt-8">
+              <div className="w-20 h-20 bg-gradient-secondary rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:animate-subtle-bounce shadow-soft">
+                <Brain className="h-9 w-9 text-white" />
               </div>
-              <h3 className="font-semibold mb-2">AI Analysis</h3>
-              <p className="text-sm text-muted-foreground">
-                Comprehensive ingredient research using trusted health databases and scientific studies
+              <h3 className="text-lg font-semibold mb-3 text-foreground">AI Analysis</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Deep ingredient research using trusted health databases and scientific literature
               </p>
             </CardContent>
           </Card>
 
-          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-caution rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-badge-bounce">
-                <Shield className="h-8 w-8 text-white" />
+          <Card className="text-center group hover:scale-[1.02] transition-all duration-300 border-0">
+            <CardContent className="pt-8">
+              <div className="w-20 h-20 bg-gradient-primary rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:animate-subtle-bounce shadow-soft">
+                <Shield className="h-9 w-9 text-white" />
               </div>
-              <h3 className="font-semibold mb-2">Personal Safety</h3>
-              <p className="text-sm text-muted-foreground">
-                Customized warnings based on your age, allergies, and health goals for maximum protection
+              <h3 className="text-lg font-semibold mb-3 text-foreground">Personalized Safety</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Customized warnings based on your age, allergies, and dietary preferences
               </p>
             </CardContent>
           </Card>
 
-          <Card className="text-center border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-health group">
-            <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-hero rounded-full mx-auto mb-4 flex items-center justify-center group-hover:animate-badge-bounce">
-                <Zap className="h-8 w-8 text-white" />
+          <Card className="text-center group hover:scale-[1.02] transition-all duration-300 border-0">
+            <CardContent className="pt-8">
+              <div className="w-20 h-20 bg-gradient-secondary rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:animate-subtle-bounce shadow-soft">
+                <Zap className="h-9 w-9 text-white" />
               </div>
-              <h3 className="font-semibold mb-2">Instant Results</h3>
-              <p className="text-sm text-muted-foreground">
-                Get comprehensive health verdicts and alternative recommendations in seconds
+              <h3 className="text-lg font-semibold mb-3 text-foreground">Instant Insights</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Get comprehensive health assessments and better alternatives in seconds
               </p>
             </CardContent>
           </Card>
         </div>
 
         {/* CTA Section */}
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <img 
-              src={healthyFoodsImage} 
-              alt="Healthy, natural food ingredients" 
-              className="w-full rounded-2xl shadow-lg"
-            />
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="order-2 lg:order-1">
+            <div className="relative">
+              <img 
+                src={healthyFoodsImage} 
+                alt="Fresh, healthy ingredients" 
+                className="w-full rounded-3xl shadow-large"
+              />
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/10 to-transparent"></div>
+            </div>
           </div>
-          <div className="space-y-6">
-            <h3 className="text-2xl md:text-3xl font-bold">
-              Take Control of Your 
-              <span className="bg-gradient-health bg-clip-text text-transparent"> Food Safety</span>
-            </h3>
-            <p className="text-muted-foreground">
-              Join thousands of health-conscious individuals who trust SensiLabel to make informed food choices. 
-              Our AI analyzes ingredients against your personal health profile to give you the confidence to eat safely.
-            </p>
+          <div className="space-y-8 order-1 lg:order-2">
+            <div className="space-y-4">
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+                Take Control of Your
+                <span className="block bg-gradient-primary bg-clip-text text-transparent">Food Choices</span>
+              </h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Join thousands of health-conscious individuals who trust Labal.ai to make informed food decisions. 
+                Our AI technology provides personalized insights that empower you to eat with confidence.
+              </p>
+            </div>
             
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span className="text-sm">Personalized for your age and health goals</span>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <div className="w-3 h-3 bg-primary rounded-full shadow-glow"></div>
+                <span className="text-foreground">Personalized health recommendations</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span className="text-sm">Instant allergen and health risk detection</span>
+              <div className="flex items-center space-x-4">
+                <div className="w-3 h-3 bg-primary rounded-full shadow-glow"></div>
+                <span className="text-foreground">Instant allergen detection</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span className="text-sm">Healthier alternative suggestions</span>
+              <div className="flex items-center space-x-4">
+                <div className="w-3 h-3 bg-primary rounded-full shadow-glow"></div>
+                <span className="text-foreground">Healthier alternative suggestions</span>
               </div>
             </div>
 
             <Button 
-              variant="health" 
+              variant="primary" 
               size="lg" 
               onClick={() => setAppState('onboarding')}
-              className="w-full sm:w-auto"
+              className="font-medium"
             >
-              <Users className="mr-2 h-4 w-4" />
+              <Users className="mr-3 h-5 w-5" />
               Start Your Health Journey
             </Button>
           </div>
@@ -214,38 +223,38 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-gradient-hero text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">50K+</div>
-              <div className="text-white/80">Products Scanned</div>
-            </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">99.9%</div>
-              <div className="text-white/80">Accuracy Rate</div>
-            </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">15K+</div>
-              <div className="text-white/80">Active Users</div>
-            </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">24/7</div>
-              <div className="text-white/80">Health Protection</div>
-            </div>
+      <section className="bg-muted py-20">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <Card className="p-8 border-0 bg-card hover:shadow-medium transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-primary bg-clip-text text-transparent">50K+</div>
+              <div className="text-muted-foreground font-medium">Products Analyzed</div>
+            </Card>
+            <Card className="p-8 border-0 bg-card hover:shadow-medium transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-primary bg-clip-text text-transparent">99.9%</div>
+              <div className="text-muted-foreground font-medium">Accuracy Rate</div>
+            </Card>
+            <Card className="p-8 border-0 bg-card hover:shadow-medium transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-primary bg-clip-text text-transparent">15K+</div>
+              <div className="text-muted-foreground font-medium">Happy Users</div>
+            </Card>
+            <Card className="p-8 border-0 bg-card hover:shadow-medium transition-all duration-300">
+              <div className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-primary bg-clip-text text-transparent">24/7</div>
+              <div className="text-muted-foreground font-medium">Health Protection</div>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-card border-t py-8">
-        <div className="container mx-auto px-4 text-center">
-          <div className="mb-4">
-            <h4 className="text-lg font-semibold bg-gradient-hero bg-clip-text text-transparent">SensiLabel</h4>
-            <p className="text-sm text-muted-foreground">Your AI-powered food safety companion</p>
+      <footer className="bg-background border-t border-border/50 py-16">
+        <div className="container mx-auto px-6 text-center">
+          <div className="mb-6">
+            <h4 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">Labal.ai</h4>
+            <p className="text-muted-foreground">Your intelligent food safety companion</p>
           </div>
-          <p className="text-xs text-muted-foreground">
-            Built with advanced AI technology to protect your health and well-being.
+          <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
+            Empowering healthier choices through advanced AI technology and personalized nutrition insights.
           </p>
         </div>
       </footer>

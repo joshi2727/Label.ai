@@ -212,7 +212,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
           )}
           <div className="flex-1" />
           <Button 
-            variant={step === 4 ? "health" : "default"} 
+            variant={step === 4 ? "primary" : "default"} 
             onClick={handleNext}
             disabled={step === 1 && (!userData.name || !userData.age)}
           >

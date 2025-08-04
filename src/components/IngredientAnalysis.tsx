@@ -300,7 +300,7 @@ export function IngredientAnalysis({ ingredients, onBackToScan, userAge = 25 }: 
           <Button variant="outline" onClick={onBackToScan} className="flex-1">
             Scan Another Product
           </Button>
-          <Button variant="health" className="flex-1">
+          <Button variant="primary" className="flex-1">
             <span className="mr-2">💡</span>
             Find Alternatives
           </Button>
