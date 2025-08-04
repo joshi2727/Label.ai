@@ -73,14 +73,37 @@ export default {
 				}
 			},
 			fontFamily: {
-				'inter': ['Inter', 'sans-serif'],
+				'inter': ['Inter Variable', 'Inter', 'sans-serif'],
 				'system': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+			},
+			fontSize: {
+				'xs': ['0.75rem', { lineHeight: '1rem' }],
+				'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+				'base': ['1rem', { lineHeight: '1.5rem' }],
+				'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+				'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+				'2xl': ['1.5rem', { lineHeight: '2rem' }],
+				'3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+				'4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+				'5xl': ['3rem', { lineHeight: '1' }],
+				'6xl': ['3.75rem', { lineHeight: '1' }],
+				'7xl': ['4.5rem', { lineHeight: '1' }],
+				'8xl': ['6rem', { lineHeight: '1' }],
+				'9xl': ['8rem', { lineHeight: '1' }],
 			},
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-secondary': 'var(--gradient-secondary)',
 				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-card': 'var(--gradient-card)'
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-bento': 'var(--gradient-bento)'
+			},
+			spacing: {
+				'18': '4.5rem',
+				'22': '5.5rem',
+				'72': '18rem',
+				'84': '21rem',
+				'96': '24rem',
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',
@@ -171,6 +194,34 @@ export default {
 					'70%': {
 						transform: 'translate3d(0, -2px, 0)'
 					}
+				},
+				'scroll-reveal': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'scale-in': {
+					'0%': {
+						transform: 'scale(0.95)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'scale(1)',
+						opacity: '1'
+					}
+				},
+				'bento-float': {
+					'0%, 100%': {
+						transform: 'translateY(0px) rotate(0deg)'
+					},
+					'50%': {
+						transform: 'translateY(-6px) rotate(1deg)'
+					}
 				}
 			},
 			animation: {
@@ -181,7 +232,10 @@ export default {
 				'float': 'float 3s ease-in-out infinite',
 				'gentle-pulse': 'gentle-pulse 2s ease-in-out infinite',
 				'slide-in-right': 'slide-in-right 0.5s ease-out',
-				'subtle-bounce': 'subtle-bounce 0.8s ease-in-out'
+				'subtle-bounce': 'subtle-bounce 0.8s ease-in-out',
+				'scroll-reveal': 'scroll-reveal 0.6s ease-out forwards',
+				'scale-in': 'scale-in 0.4s ease-out',
+				'bento-float': 'bento-float 4s ease-in-out infinite'
 			}
 		}
 	},

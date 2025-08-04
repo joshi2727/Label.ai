@@ -70,7 +70,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
                 <span className="text-2xl text-white">👋</span>
               </div>
               <CardTitle className="text-2xl bg-gradient-hero bg-clip-text text-transparent">
-                Welcome to SensiLabel!
+                Welcome to Labal.ai!
               </CardTitle>
               <CardDescription>
                 Let's personalize your food safety experience
