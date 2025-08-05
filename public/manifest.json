@@ -1,11 +1,11 @@
 {
-  "name": "Labal.ai - AI-Powered Food Safety Scanner",
-  "short_name": "Labal.ai",
+  "name": "Label.ai - AI-Powered Food Safety Scanner",
+  "short_name": "Label.ai",
   "description": "Discover what's really in your food with AI-powered ingredient analysis. Get personalized health insights tailored to your age and dietary needs.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fafafa",
-  "theme_color": "#10b981",
+  "background_color": "#F5F7FA",
+  "theme_color": "#9333ea",
   "orientation": "portrait-primary",
   "icons": [
     {

@@ -9,7 +9,7 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Camera, Shield, Brain, Users, Zap, Scan, Star, Award, CheckCircle } from 'lucide-react';
 import heroImage from '@/assets/hero-ghibli.jpg';
-import healthyFoodsImage from '@/assets/healthy-ghibli.jpg';
+import healthyFoodsImage from '@/assets/mobile-scanning-ghibli.jpg';
 
 type AppState = 'landing' | 'onboarding' | 'scanner' | 'analysis';
 
@@ -58,7 +58,7 @@ const Index = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            Labal.ai
+            Label.ai
           </h1>
           <ThemeToggle />
         </div>
@@ -78,7 +78,7 @@ const Index = () => {
             <ScrollReveal>
               <div className="mb-16 space-y-8">
                 <h1 className="font-bold text-white mb-6 tracking-tight">
-                  Labal.ai
+                  Label.ai
                 </h1>
                 <p className="text-2xl md:text-3xl text-white/90 mb-6 font-medium">
                   Smart Food Safety Analysis
@@ -103,7 +103,7 @@ const Index = () => {
                 <Button 
                   variant="outline" 
                   size="xl"
-                  className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 min-w-[220px] font-medium transform hover:scale-105 transition-all duration-200"
+                  className="min-w-[220px] font-medium transform hover:scale-105 transition-all duration-200"
                 >
                   <Brain className="mr-3 h-5 w-5" />
                   See How It Works
@@ -133,7 +133,7 @@ const Index = () => {
         <ScrollReveal>
           <div className="text-center mb-20">
             <h2 className="font-bold mb-6 text-foreground tracking-tight">
-              How Labal.ai Works
+              How Label.ai Works
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Advanced AI technology meets personalized health insights to give you complete transparency about your food choices.
@@ -236,7 +236,7 @@ const Index = () => {
               <div className="relative group">
                 <img 
                   src={healthyFoodsImage} 
-                  alt="Ghibli-style magical fresh ingredients" 
+                  alt="Ghibli-style mobile food label scanning" 
                   className="w-full rounded-lg shadow-large group-hover:shadow-glow transition-all duration-500 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/5 to-transparent"></div>
@@ -249,7 +249,7 @@ const Index = () => {
                   <span className="block bg-gradient-primary bg-clip-text text-transparent">Food Choices</span>
                 </h3>
                 <p className="text-xl text-muted-foreground leading-relaxed">
-                  Join thousands of health-conscious individuals who trust Labal.ai to make informed food decisions. 
+                  Join thousands of health-conscious individuals who trust Label.ai to make informed food decisions. 
                   Our AI technology provides personalized insights that empower you to eat with confidence.
                 </p>
               </div>
@@ -323,7 +323,7 @@ const Index = () => {
           <ScrollReveal>
             <div className="max-w-4xl mx-auto text-center">
               <div className="mb-8">
-                <h4 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">Labal.ai</h4>
+                <h4 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">Label.ai</h4>
                 <p className="text-xl text-muted-foreground">Your intelligent food safety companion</p>
               </div>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
@@ -331,7 +331,7 @@ const Index = () => {
                 Join the future of food safety today.
               </p>
               <div className="flex justify-center space-x-6 text-sm text-muted-foreground">
-                <span>&copy; 2024 Labal.ai</span>
+                <span>&copy; 2024 Label.ai</span>
                 <span>•</span>
                 <span>Privacy Policy</span>
                 <span>•</span>
