@@ -37,7 +37,7 @@ export function BentoCard({ children, className, size = 'md', animate = true }: 
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-3xl bg-gradient-bento border border-border/50 p-8 transition-all duration-300 hover:shadow-large hover:scale-[1.02]",
+        "group relative overflow-hidden rounded-lg bg-gradient-bento border border-border/50 p-8 transition-all duration-300 hover:shadow-large hover:scale-[1.02]",
         sizeClasses[size],
         animate && "hover:animate-bento-float",
         className

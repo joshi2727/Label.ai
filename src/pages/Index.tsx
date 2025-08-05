@@ -8,8 +8,8 @@ import { BentoGrid, BentoCard } from '@/components/BentoGrid';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Camera, Shield, Brain, Users, Zap, Scan, Star, Award, CheckCircle } from 'lucide-react';
-import heroImage from '@/assets/hero-scan.jpg';
-import healthyFoodsImage from '@/assets/healthy-foods.jpg';
+import heroImage from '@/assets/hero-ghibli.jpg';
+import healthyFoodsImage from '@/assets/healthy-ghibli.jpg';
 
 type AppState = 'landing' | 'onboarding' | 'scanner' | 'analysis';
 
@@ -117,10 +117,10 @@ const Index = () => {
                 <div className="relative">
                   <img 
                     src={heroImage} 
-                    alt="AI-powered food scanning interface" 
-                    className="w-full rounded-3xl shadow-large hover:shadow-glow transition-all duration-500"
+                    alt="Ghibli-inspired AI food scanning interface" 
+                    className="w-full rounded-lg shadow-large hover:shadow-glow transition-all duration-500 hover:scale-[1.02]"
                   />
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/10 to-transparent"></div>
                 </div>
               </div>
             </ScrollReveal>
@@ -236,10 +236,10 @@ const Index = () => {
               <div className="relative group">
                 <img 
                   src={healthyFoodsImage} 
-                  alt="Fresh, healthy ingredients" 
-                  className="w-full rounded-3xl shadow-large group-hover:shadow-glow transition-all duration-500"
+                  alt="Ghibli-style magical fresh ingredients" 
+                  className="w-full rounded-lg shadow-large group-hover:shadow-glow transition-all duration-500 group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black/10 to-transparent"></div>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/5 to-transparent"></div>
               </div>
             </div>
             <div className="space-y-8 order-1 lg:order-2">

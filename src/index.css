@@ -7,19 +7,19 @@
 @layer base {
   :root {
     /* Modern Design Tokens - WCAG 2.2 Compliant */
-    --background: 0 0% 98%;          /* Pure warm white base */
-    --foreground: 240 10% 3.9%;     /* High contrast text */
+    --background: 217 33% 97%;       /* #F5F7FA - Soft light background */
+    --foreground: 220 13% 18%;       /* #22272E - High contrast text */
 
-    /* Signature Brand Palette - Sage Green Focus */
-    --primary: 142 76% 36%;          /* Vibrant sage green */
-    --primary-foreground: 0 0% 98%;
-    --primary-glow: 142 69% 58%;     /* Lighter sage variant */
+    /* Brand Lavender Palette - h260 s70 l55 for 500 */
+    --primary: 260 70% 55%;          /* Lavender 500 */
+    --primary-foreground: 0 0% 100%; /* White text */
+    --primary-glow: 260 70% 70%;     /* Lighter lavender variant */
     
-    --secondary: 47 96% 89%;         /* Soft warm neutral */
-    --secondary-foreground: 240 10% 3.9%;
+    --secondary: 260 70% 95%;        /* Lavender 50 - Very light lavender */
+    --secondary-foreground: 260 70% 55%; /* Lavender 500 text */
     
-    --accent: 216 12% 84%;           /* Cool neutral accent */
-    --accent-foreground: 240 10% 3.9%;
+    --accent: 260 30% 92%;           /* Neutral lavender accent */
+    --accent-foreground: 220 13% 18%; /* High contrast text */
     
     --destructive: 0 84% 60%;        /* Alert red */
     --destructive-foreground: 0 0% 98%;
@@ -31,23 +31,23 @@
     --warning-foreground: 0 0% 98%;
 
     /* Elevated Surface Design Tokens */
-    --card: 0 0% 100%;               /* Pure white elevated surfaces */
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;               /* #FFFFFF - Pure white elevated surfaces */
+    --card-foreground: 220 13% 18%;  /* #22272E - High contrast text */
+    --popover: 0 0% 100%;            /* #FFFFFF - Pure white popover */
+    --popover-foreground: 220 13% 18%; /* #22272E - High contrast text */
     
     /* Refined Neutral Palette */
-    --muted: 210 40% 96%;            /* Cool light background */
-    --muted-foreground: 215 16% 47%; /* Medium contrast text */
-    --border: 214 32% 91%;           /* Subtle borders */
-    --input: 214 32% 91%;            /* Input field background */
-    --ring: 142 76% 36%;             /* Focus ring matches brand */
+    --muted: 260 20% 96%;            /* Light lavender background */
+    --muted-foreground: 220 9% 46%;  /* Medium contrast text */
+    --border: 260 30% 91%;           /* Subtle lavender borders */
+    --input: 260 30% 96%;            /* Light input field background */
+    --ring: 260 70% 70%;             /* Focus ring lavender 300 */
 
     /* Design Token Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--accent)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(142 69% 58%) 50%, hsl(var(--accent)) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 40% 98%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(260 20% 98%) 100%);
     --gradient-bento: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(var(--muted)) 100%);
     
     /* Professional Shadow Tokens */
@@ -77,19 +77,19 @@
 
   .dark {
     /* Dark Mode Design Tokens */
-    --background: 240 10% 3.9%;      /* Deep sophisticated dark */
-    --foreground: 0 0% 98%;          /* High contrast white text */
+    --background: 220 13% 9%;        /* #15171C - Deep sophisticated dark */
+    --foreground: 217 33% 97%;       /* #F1F3F7 - High contrast white text */
     
     /* Dark Mode Brand Palette */
-    --primary: 142 69% 58%;          /* Brighter sage for dark mode */
-    --primary-foreground: 240 10% 3.9%;
-    --primary-glow: 142 69% 70%;
+    --primary: 260 70% 65%;          /* Brighter lavender for dark mode */
+    --primary-foreground: 220 13% 9%; /* Dark text on lavender */
+    --primary-glow: 260 70% 75%;
     
-    --secondary: 240 5% 26%;         /* Dark neutral secondary */
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 13% 14%;        /* #1F2229 - Dark neutral secondary */
+    --secondary-foreground: 217 33% 97%; /* Light text */
     
-    --accent: 240 4% 16%;            /* Subtle dark accent */
-    --accent-foreground: 0 0% 98%;
+    --accent: 220 13% 16%;           /* Subtle dark accent */
+    --accent-foreground: 217 33% 97%; /* Light text */
     
     --success: 142 69% 58%;
     --success-foreground: 240 10% 3.9%;
@@ -101,22 +101,22 @@
     --destructive-foreground: 0 0% 98%;
 
     /* Dark Mode Surfaces */
-    --card: 240 10% 3.9%;            /* Consistent with background */
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --muted: 240 5% 26%;             /* Subtle dark muted */
-    --muted-foreground: 240 5% 64.9%;
-    --border: 240 6% 10%;            /* Dark borders */
-    --input: 240 6% 10%;
-    --ring: 142 69% 58%;
+    --card: 220 13% 14%;             /* #1F2229 - Consistent dark card */
+    --card-foreground: 217 33% 97%;  /* Light text */
+    --popover: 220 13% 14%;          /* Dark popover */
+    --popover-foreground: 217 33% 97%; /* Light text */
+    --muted: 220 13% 16%;            /* Subtle dark muted */
+    --muted-foreground: 220 9% 65%;  /* Medium contrast text */
+    --border: 220 13% 20%;           /* Dark borders */
+    --input: 220 13% 16%;            /* Dark input background */
+    --ring: 260 70% 65%;             /* Lavender focus ring */
     
     /* Dark Mode Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--accent)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(142 69% 70%) 50%, hsl(var(--accent)) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(240 10% 3.9%) 0%, hsl(240 5% 6%) 100%);
-    --gradient-bento: linear-gradient(135deg, hsl(240 10% 3.9%) 0%, hsl(240 5% 26%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 13% 14%) 0%, hsl(220 13% 16%) 100%);
+    --gradient-bento: linear-gradient(135deg, hsl(220 13% 14%) 0%, hsl(var(--muted)) 100%);
     
     /* Dark Mode Shadows */
     --shadow-soft: 0 1px 3px 0 hsl(0 0% 0% / 0.3), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
@@ -141,7 +141,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'calt';
     font-variation-settings: 'slnt' 0;
     line-height: 1.6;
@@ -150,21 +150,21 @@
 
   /* Fluid Typography Scale */
   h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.1;
   }
 
   h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.2;
   }
 
   h3 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: 600;
     letter-spacing: -0.015em;
     line-height: 1.3;
