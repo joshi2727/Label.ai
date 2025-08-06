@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -60,6 +61,19 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
     }));
   };
 
+  const canProceed = () => {
+    switch (step) {
+      case 1:
+        return userData.name.trim() !== '' && userData.age > 0;
+      case 2:
+      case 3:
+      case 4:
+        return true;
+      default:
+        return false;
+    }
+  };
+
   const renderStep = () => {
     switch (step) {
       case 1:
@@ -70,7 +84,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
                 <span className="text-2xl text-white">👋</span>
               </div>
               <CardTitle className="text-2xl bg-gradient-hero bg-clip-text text-transparent">
-                Welcome to Labal.ai!
+                Welcome to Label.ai!
               </CardTitle>
               <CardDescription>
                 Let's personalize your food safety experience
@@ -117,7 +131,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
               </div>
               <CardTitle className="text-xl">Health Goals</CardTitle>
               <CardDescription>
-                What are your main health priorities?
+                What are your main health priorities? (Optional - you can skip this step)
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -148,7 +162,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
               </div>
               <CardTitle className="text-xl">Allergies & Restrictions</CardTitle>
               <CardDescription>
-                Help us keep you safe by identifying any allergies
+                Help us keep you safe by identifying any allergies (Optional)
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -187,7 +201,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
                 <h3 className="font-semibold">Profile Summary</h3>
                 <p className="text-sm mt-2">
                   Hi {userData.name}! We'll personalize ingredient analysis based on your age ({userData.age}) 
-                  and health goals. {userData.allergies.length > 0 && `We'll also watch out for your allergies: ${userData.allergies.join(', ')}.`}
+                  {userData.healthGoals.length > 0 && ` and your health goals: ${userData.healthGoals.join(', ')}`}.
+                  {userData.allergies.length > 0 && ` We'll also watch out for your allergies: ${userData.allergies.join(', ')}.`}
                 </p>
               </div>
             </CardContent>
@@ -204,29 +219,33 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
       <div className="w-full max-w-md">
         {renderStep()}
         
-        <div className="flex justify-between mt-6">
-          {step > 1 && (
-            <Button variant="outline" onClick={handlePrevious}>
-              Previous
-            </Button>
-          )}
-          <div className="flex-1" />
+        {/* Consistent button layout across all steps */}
+        <div className="flex justify-between items-center mt-6 min-h-[44px]">
           <Button 
-            variant={step === 4 ? "primary" : "default"} 
+            variant="outline" 
+            onClick={handlePrevious}
+            className={`transition-opacity duration-200 ${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+          >
+            Previous
+          </Button>
+          
+          <Button 
+            variant="primary" 
             onClick={handleNext}
-            disabled={step === 1 && (!userData.name || !userData.age)}
+            disabled={!canProceed()}
+            className="ml-auto"
           >
             {step === 4 ? "Start Scanning!" : "Next"}
           </Button>
         </div>
 
-        {/* Progress indicator */}
-        <div className="flex justify-center mt-4 space-x-2">
+        {/* Progress indicator - consistent across all steps */}
+        <div className="flex justify-center mt-6 space-x-2">
           {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                i <= step ? 'bg-primary' : 'bg-muted'
+                i <= step ? 'bg-primary scale-110' : 'bg-muted'
               }`}
             />
           ))}
