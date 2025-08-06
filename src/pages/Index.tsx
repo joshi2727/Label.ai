@@ -1,15 +1,16 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { DashboardLayout } from '@/components/DashboardLayout';
 import { OnboardingFlow } from '@/components/OnboardingFlow';
 import { CameraScanner } from '@/components/CameraScanner';
 import { IngredientAnalysis } from '@/components/IngredientAnalysis';
 import { BentoGrid, BentoCard } from '@/components/BentoGrid';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { ThemeToggle } from '@/components/ThemeToggle';
-import { Camera, Shield, Brain, Users, Zap, Scan, Star, Award, CheckCircle } from 'lucide-react';
+import { Camera, Shield, Brain, Users, Zap, Scan, CheckCircle, Star, Award } from 'lucide-react';
 import heroImage from '@/assets/hero-ghibli.jpg';
-import healthyFoodsImage from '@/assets/mobile-scanning-ghibli.jpg';
+import mobileImage from '@/assets/mobile-scanning-clean.jpg';
 
 type AppState = 'landing' | 'onboarding' | 'scanner' | 'analysis';
 
@@ -53,295 +54,240 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            Label.ai
-          </h1>
-          <ThemeToggle />
-        </div>
-      </nav>
+    <DashboardLayout currentPage="home">
+      <div className="min-h-screen bg-[hsl(var(--surface-0))]">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden bg-gradient-hero py-16 lg:py-24">
+          <div className="absolute inset-0 bg-gradient-to-br from-background/10 via-transparent to-background/5"></div>
+          
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Column - Content */}
+              <div className="text-center lg:text-left">
+                <ScrollReveal>
+                  <div className="space-y-6">
+                    <h1 className="font-bold text-white mb-4 tracking-tight">
+                      Label.ai
+                    </h1>
+                    <p className="text-xl text-white/90 mb-6 leading-relaxed">
+                      Smart food safety analysis powered by AI. Get personalized health insights tailored to your age and dietary needs.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                      <Button 
+                        variant="hero" 
+                        size="lg" 
+                        onClick={() => setAppState('onboarding')}
+                        className="min-w-[180px]"
+                      >
+                        <Camera className="mr-3 h-5 w-5" />
+                        Start Scanning
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="lg"
+                        className="min-w-[180px]"
+                      >
+                        <Brain className="mr-3 h-5 w-5" />
+                        Learn More
+                      </Button>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              </div>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-hero pt-24 pb-16 lg:pt-32 lg:pb-24">
-        <div className="absolute inset-0 bg-gradient-to-br from-background/10 via-transparent to-background/5"></div>
-        
-        {/* Floating elements for visual interest */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-float"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-secondary/10 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-20 left-20 w-12 h-12 bg-accent/10 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
-        
-        <div className="relative container mx-auto px-6 text-center">
-          <div className="max-w-6xl mx-auto">
+              {/* Right Column - Hero Image */}
+              <ScrollReveal delay={200}>
+                <div className="relative">
+                  <img 
+                    src={heroImage} 
+                    alt="AI-powered food scanning interface" 
+                    className="w-full rounded-xl shadow-large hover:shadow-glow transition-all duration-500 hover:scale-[1.02]"
+                  />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/10 to-transparent"></div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-6 max-w-6xl">
             <ScrollReveal>
-              <div className="mb-16 space-y-8">
-                <h1 className="font-bold text-white mb-6 tracking-tight">
-                  Label.ai
-                </h1>
-                <p className="text-2xl md:text-3xl text-white/90 mb-6 font-medium">
-                  Smart Food Safety Analysis
-                </p>
-                <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-                  Discover what's really in your food with AI-powered ingredient analysis. Get personalized health insights tailored to your age and dietary needs.
+              <div className="text-center mb-16">
+                <h2 className="font-bold mb-6 text-[hsl(var(--text-primary))] tracking-tight">
+                  How Label.ai Works
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                  Advanced AI technology meets personalized health insights to give you complete transparency about your food choices.
                 </p>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
-                <Button 
-                  variant="hero" 
-                  size="xl" 
-                  onClick={() => setAppState('onboarding')}
-                  className="min-w-[220px] font-medium transform hover:scale-105 transition-all duration-200"
-                >
-                  <Camera className="mr-3 h-5 w-5" />
-                  Start Scanning
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="xl"
-                  className="min-w-[220px] font-medium transform hover:scale-105 transition-all duration-200"
-                >
-                  <Brain className="mr-3 h-5 w-5" />
-                  See How It Works
-                </Button>
+              <BentoGrid className="mb-16">
+                <BentoCard size="lg" className="bg-gradient-primary text-white">
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="w-16 h-16 bg-white/20 rounded-xl mb-6 flex items-center justify-center">
+                        <Camera className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-semibold mb-4">Smart Scanning</h3>
+                      <p className="text-white/90 leading-relaxed mb-6">
+                        Capture ingredients instantly with our advanced OCR technology that reads any label with 99.9% accuracy
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-white/10 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold">50K+</div>
+                        <div className="text-sm text-white/70">Products Analyzed</div>
+                      </div>
+                      <div className="bg-white/10 rounded-lg p-4 text-center">
+                        <div className="text-2xl font-bold">99.9%</div>
+                        <div className="text-sm text-white/70">Accuracy Rate</div>
+                      </div>
+                    </div>
+                  </div>
+                </BentoCard>
+
+                <BentoCard size="sm">
+                  <div className="flex-1 flex flex-col justify-center text-center">
+                    <div className="w-16 h-16 bg-gradient-primary rounded-xl mx-auto mb-6 flex items-center justify-center">
+                      <Brain className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-[hsl(var(--text-primary))]">AI Analysis</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Deep ingredient research using trusted databases
+                    </p>
+                  </div>
+                </BentoCard>
+
+                <BentoCard size="sm">
+                  <div className="flex-1 flex flex-col justify-center text-center">
+                    <div className="w-16 h-16 bg-gradient-primary rounded-xl mx-auto mb-6 flex items-center justify-center">
+                      <Shield className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-[hsl(var(--text-primary))]">Safety First</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Personalized warnings based on your profile
+                    </p>
+                  </div>
+                </BentoCard>
+
+                <BentoCard size="md" className="bg-gradient-hero text-white">
+                  <div className="flex-1 flex flex-col justify-center">
+                    <div className="w-16 h-16 bg-white/20 rounded-xl mb-6 flex items-center justify-center">
+                      <Zap className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-semibold mb-4">Instant Health Insights</h3>
+                    <p className="text-white/90 leading-relaxed">
+                      Get comprehensive health assessments and better alternatives in seconds. Our AI analyzes ingredients for safety, allergens, and nutritional value.
+                    </p>
+                  </div>
+                </BentoCard>
+
+                <BentoCard size="sm">
+                  <div className="flex-1 flex flex-col justify-center text-center">
+                    <div className="w-16 h-16 bg-gradient-primary rounded-xl mx-auto mb-6 flex items-center justify-center">
+                      <CheckCircle className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-[hsl(var(--text-primary))]">WCAG Compliant</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Accessible design for everyone
+                    </p>
+                  </div>
+                </BentoCard>
+              </BentoGrid>
+            </ScrollReveal>
+
+            {/* CTA Section */}
+            <ScrollReveal delay={300}>
+              <Card className="bg-gradient-card border-0 shadow-large p-8">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div className="order-2 lg:order-1">
+                    <img 
+                      src={mobileImage} 
+                      alt="Clean mobile food label scanning" 
+                      className="w-full rounded-lg shadow-medium hover:shadow-large transition-all duration-300 hover:scale-[1.02]"
+                    />
+                  </div>
+                  <div className="space-y-8 order-1 lg:order-2">
+                    <div className="space-y-6">
+                      <h3 className="font-bold text-[hsl(var(--text-primary))] leading-tight">
+                        Take Control of Your
+                        <span className="block text-[hsl(var(--brand-500))]">Food Choices</span>
+                      </h3>
+                      <p className="text-lg text-muted-foreground leading-relaxed">
+                        Join thousands of health-conscious individuals who trust Label.ai to make informed food decisions.
+                      </p>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-4 group hover:translate-x-2 transition-transform duration-200">
+                        <div className="w-3 h-3 bg-[hsl(var(--brand-500))] rounded-full shadow-glow"></div>
+                        <span className="text-[hsl(var(--text-primary))]">Personalized health recommendations</span>
+                      </div>
+                      <div className="flex items-center space-x-4 group hover:translate-x-2 transition-transform duration-200">
+                        <div className="w-3 h-3 bg-[hsl(var(--brand-500))] rounded-full shadow-glow"></div>
+                        <span className="text-[hsl(var(--text-primary))]">Instant allergen detection</span>
+                      </div>
+                      <div className="flex items-center space-x-4 group hover:translate-x-2 transition-transform duration-200">
+                        <div className="w-3 h-3 bg-[hsl(var(--brand-500))] rounded-full shadow-glow"></div>
+                        <span className="text-[hsl(var(--text-primary))]">Healthier alternative suggestions</span>
+                      </div>
+                    </div>
+
+                    <Button 
+                      variant="primary" 
+                      size="lg" 
+                      onClick={() => setAppState('onboarding')}
+                      className="font-medium"
+                    >
+                      <Users className="mr-3 h-5 w-5" />
+                      Start Your Health Journey
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="bg-muted/30 py-16">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <ScrollReveal>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <Card className="text-center p-6 bg-gradient-card border-0 hover:shadow-medium transition-all duration-300 hover:scale-[1.02]">
+                  <CardContent className="pt-4">
+                    <div className="text-4xl font-bold mb-2 text-[hsl(var(--brand-500))]">50K+</div>
+                    <div className="text-muted-foreground font-medium">Products Analyzed</div>
+                  </CardContent>
+                </Card>
+                <Card className="text-center p-6 bg-gradient-card border-0 hover:shadow-medium transition-all duration-300 hover:scale-[1.02]">
+                  <CardContent className="pt-4">
+                    <div className="text-4xl font-bold mb-2 text-[hsl(var(--brand-500))]">99.9%</div>
+                    <div className="text-muted-foreground font-medium">Accuracy Rate</div>
+                  </CardContent>
+                </Card>
+                <Card className="text-center p-6 bg-gradient-card border-0 hover:shadow-medium transition-all duration-300 hover:scale-[1.02]">
+                  <CardContent className="pt-4">
+                    <div className="text-4xl font-bold mb-2 text-[hsl(var(--brand-500))]">15K+</div>
+                    <div className="text-muted-foreground font-medium">Happy Users</div>
+                  </CardContent>
+                </Card>
+                <Card className="text-center p-6 bg-gradient-card border-0 hover:shadow-medium transition-all duration-300 hover:scale-[1.02]">
+                  <CardContent className="pt-4">
+                    <div className="text-4xl font-bold mb-2 text-[hsl(var(--brand-500))]">24/7</div>
+                    <div className="text-muted-foreground font-medium">Health Protection</div>
+                  </CardContent>
+                </Card>
               </div>
             </ScrollReveal>
-            
-            {/* Hero Image */}
-            <ScrollReveal delay={400}>
-              <div className="max-w-5xl mx-auto">
-                <div className="relative">
-                  <img 
-                    src={heroImage} 
-                    alt="Ghibli-inspired AI food scanning interface" 
-                    className="w-full rounded-lg shadow-large hover:shadow-glow transition-all duration-500 hover:scale-[1.02]"
-                  />
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/10 to-transparent"></div>
-                </div>
-              </div>
-            </ScrollReveal>
           </div>
-        </div>
-      </section>
-
-      {/* Features Section - Bento Grid */}
-      <section className="container mx-auto px-6 py-24 lg:py-32">
-        <ScrollReveal>
-          <div className="text-center mb-20">
-            <h2 className="font-bold mb-6 text-foreground tracking-tight">
-              How Label.ai Works
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              Advanced AI technology meets personalized health insights to give you complete transparency about your food choices.
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={200}>
-          <BentoGrid className="mb-20">
-            <BentoCard size="md" className="bg-gradient-primary text-white">
-              <div className="flex-1 flex flex-col justify-center">
-                <div className="w-16 h-16 bg-white/20 rounded-2xl mb-6 flex items-center justify-center">
-                  <Camera className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-semibold mb-4">Smart Scanning</h3>
-                <p className="text-white/80 leading-relaxed">
-                  Capture ingredients instantly with our advanced OCR technology that reads any label with 99.9% accuracy
-                </p>
-              </div>
-            </BentoCard>
-
-            <BentoCard size="sm">
-              <div className="flex-1 flex flex-col justify-center text-center">
-                <div className="w-16 h-16 bg-gradient-secondary rounded-2xl mx-auto mb-6 flex items-center justify-center">
-                  <Brain className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-foreground">AI Analysis</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Deep ingredient research using trusted databases
-                </p>
-              </div>
-            </BentoCard>
-
-            <BentoCard size="sm">
-              <div className="flex-1 flex flex-col justify-center text-center">
-                <div className="w-16 h-16 bg-gradient-primary rounded-2xl mx-auto mb-6 flex items-center justify-center">
-                  <Shield className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-foreground">Personalized Safety</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Customized warnings based on your profile
-                </p>
-              </div>
-            </BentoCard>
-
-            <BentoCard size="lg" className="bg-gradient-hero text-white">
-              <div className="flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl mb-6 flex items-center justify-center">
-                    <Zap className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-semibold mb-4">Instant Health Insights</h3>
-                  <p className="text-white/80 leading-relaxed mb-6">
-                    Get comprehensive health assessments and better alternatives in seconds. Our AI analyzes ingredients for safety, allergens, and nutritional value.
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 gap-4 mt-8">
-                  <div className="bg-white/10 rounded-xl p-4 text-center">
-                    <div className="text-2xl font-bold">50K+</div>
-                    <div className="text-sm text-white/70">Products Analyzed</div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-4 text-center">
-                    <div className="text-2xl font-bold">15K+</div>
-                    <div className="text-sm text-white/70">Happy Users</div>
-                  </div>
-                </div>
-              </div>
-            </BentoCard>
-
-            <BentoCard size="sm">
-              <div className="flex-1 flex flex-col justify-center text-center">
-                <div className="w-16 h-16 bg-gradient-secondary rounded-2xl mx-auto mb-6 flex items-center justify-center">
-                  <Scan className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-foreground">Real-time Results</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Instant analysis and recommendations
-                </p>
-              </div>
-            </BentoCard>
-
-            <BentoCard size="sm">
-              <div className="flex-1 flex flex-col justify-center text-center">
-                <div className="w-16 h-16 bg-gradient-primary rounded-2xl mx-auto mb-6 flex items-center justify-center">
-                  <CheckCircle className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-foreground">WCAG Compliant</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Accessible design for everyone
-                </p>
-              </div>
-            </BentoCard>
-          </BentoGrid>
-        </ScrollReveal>
-
-        {/* CTA Section */}
-        <ScrollReveal delay={300}>
-          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-            <div className="order-2 lg:order-1">
-              <div className="relative group">
-                <img 
-                  src={healthyFoodsImage} 
-                  alt="Ghibli-style mobile food label scanning" 
-                  className="w-full rounded-lg shadow-large group-hover:shadow-glow transition-all duration-500 group-hover:scale-[1.02]"
-                />
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/5 to-transparent"></div>
-              </div>
-            </div>
-            <div className="space-y-8 order-1 lg:order-2">
-              <div className="space-y-6">
-                <h3 className="font-bold text-foreground leading-tight">
-                  Take Control of Your
-                  <span className="block bg-gradient-primary bg-clip-text text-transparent">Food Choices</span>
-                </h3>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  Join thousands of health-conscious individuals who trust Label.ai to make informed food decisions. 
-                  Our AI technology provides personalized insights that empower you to eat with confidence.
-                </p>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4 group hover:translate-x-2 transition-transform duration-200">
-                  <div className="w-3 h-3 bg-primary rounded-full shadow-glow"></div>
-                  <span className="text-foreground">Personalized health recommendations</span>
-                </div>
-                <div className="flex items-center space-x-4 group hover:translate-x-2 transition-transform duration-200">
-                  <div className="w-3 h-3 bg-primary rounded-full shadow-glow"></div>
-                  <span className="text-foreground">Instant allergen detection</span>
-                </div>
-                <div className="flex items-center space-x-4 group hover:translate-x-2 transition-transform duration-200">
-                  <div className="w-3 h-3 bg-primary rounded-full shadow-glow"></div>
-                  <span className="text-foreground">Healthier alternative suggestions</span>
-                </div>
-              </div>
-
-              <Button 
-                variant="primary" 
-                size="lg" 
-                onClick={() => setAppState('onboarding')}
-                className="font-medium transform hover:scale-105 transition-all duration-200"
-              >
-                <Users className="mr-3 h-5 w-5" />
-                Start Your Health Journey
-              </Button>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Stats Section */}
-      <section className="bg-muted/30 py-20">
-        <div className="container mx-auto px-6">
-          <ScrollReveal>
-            <BentoGrid className="!grid-cols-2 lg:!grid-cols-4 !auto-rows-[200px]">
-              <BentoCard size="sm" className="!row-span-1 !col-span-1 text-center">
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="text-5xl md:text-6xl font-bold mb-3 bg-gradient-primary bg-clip-text text-transparent">50K+</div>
-                  <div className="text-muted-foreground font-medium">Products Analyzed</div>
-                </div>
-              </BentoCard>
-              <BentoCard size="sm" className="!row-span-1 !col-span-1 text-center">
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="text-5xl md:text-6xl font-bold mb-3 bg-gradient-primary bg-clip-text text-transparent">99.9%</div>
-                  <div className="text-muted-foreground font-medium">Accuracy Rate</div>
-                </div>
-              </BentoCard>
-              <BentoCard size="sm" className="!row-span-1 !col-span-1 text-center">
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="text-5xl md:text-6xl font-bold mb-3 bg-gradient-primary bg-clip-text text-transparent">15K+</div>
-                  <div className="text-muted-foreground font-medium">Happy Users</div>
-                </div>
-              </BentoCard>
-              <BentoCard size="sm" className="!row-span-1 !col-span-1 text-center">
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="text-5xl md:text-6xl font-bold mb-3 bg-gradient-primary bg-clip-text text-transparent">24/7</div>
-                  <div className="text-muted-foreground font-medium">Health Protection</div>
-                </div>
-              </BentoCard>
-            </BentoGrid>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-background border-t border-border/50 py-20">
-        <div className="container mx-auto px-6">
-          <ScrollReveal>
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="mb-8">
-                <h4 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">Label.ai</h4>
-                <p className="text-xl text-muted-foreground">Your intelligent food safety companion</p>
-              </div>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
-                Empowering healthier choices through advanced AI technology and personalized nutrition insights. 
-                Join the future of food safety today.
-              </p>
-              <div className="flex justify-center space-x-6 text-sm text-muted-foreground">
-                <span>&copy; 2024 Label.ai</span>
-                <span>•</span>
-                <span>Privacy Policy</span>
-                <span>•</span>
-                <span>Terms of Service</span>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </footer>
-    </div>
+        </section>
+      </div>
+    </DashboardLayout>
   );
 };
 
