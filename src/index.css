@@ -1,149 +1,136 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Label.ai Design System - Clean Dashboard Theme with Design Tokens */
+/* Labal.ai Design System - Modern Health & Food Safety Theme with Design Tokens */
 
 @layer base {
   :root {
-    /* Clean Dashboard Design Tokens - WCAG 2.2 Compliant */
-    --background: 220 33% 98%;       /* #F8FAFC - Clean light background */
-    --foreground: 220 26% 14%;       /* #1F2A37 - High contrast text */
+    /* Modern Design Tokens - WCAG 2.2 Compliant */
+    --background: 217 33% 97%;       /* #F5F7FA - Soft light background */
+    --foreground: 220 13% 18%;       /* #22272E - High contrast text */
 
-    /* Brand Green Palette - h142 s76 l55 for 500 */
-    --primary: 142 76% 55%;          /* Green 500 #22C55E */
+    /* Brand Lavender Palette - h260 s70 l55 for 500 */
+    --primary: 260 70% 55%;          /* Lavender 500 */
     --primary-foreground: 0 0% 100%; /* White text */
-    --primary-glow: 142 69% 58%;     /* Green 400 #4ADE80 */
+    --primary-glow: 260 70% 70%;     /* Lighter lavender variant */
     
-    --secondary: 142 76% 95%;        /* Green 50 - Very light green */
-    --secondary-foreground: 142 76% 55%; /* Green 500 text */
+    --secondary: 260 70% 95%;        /* Lavender 50 - Very light lavender */
+    --secondary-foreground: 260 70% 55%; /* Lavender 500 text */
     
-    --accent: 142 30% 92%;           /* Neutral green accent */
-    --accent-foreground: 220 26% 14%; /* High contrast text */
+    --accent: 260 30% 92%;           /* Neutral lavender accent */
+    --accent-foreground: 220 13% 18%; /* High contrast text */
     
     --destructive: 0 84% 60%;        /* Alert red */
     --destructive-foreground: 0 0% 98%;
     
-    --success: 142 76% 55%;          /* Consistent with primary */
+    --success: 142 76% 36%;          /* Consistent with primary */
     --success-foreground: 0 0% 98%;
     
     --warning: 38 92% 50%;           /* Amber warning */
     --warning-foreground: 0 0% 98%;
 
-    /* Clean Surface Design Tokens */
-    --card: 0 0% 100%;               /* #FFFFFF - Pure white cards */
-    --card-foreground: 220 26% 14%;  /* #1F2A37 - High contrast text */
+    /* Elevated Surface Design Tokens */
+    --card: 0 0% 100%;               /* #FFFFFF - Pure white elevated surfaces */
+    --card-foreground: 220 13% 18%;  /* #22272E - High contrast text */
     --popover: 0 0% 100%;            /* #FFFFFF - Pure white popover */
-    --popover-foreground: 220 26% 14%; /* #1F2A37 - High contrast text */
+    --popover-foreground: 220 13% 18%; /* #22272E - High contrast text */
     
     /* Refined Neutral Palette */
-    --muted: 220 14% 96%;            /* Light neutral background */
+    --muted: 260 20% 96%;            /* Light lavender background */
     --muted-foreground: 220 9% 46%;  /* Medium contrast text */
-    --border: 220 13% 91%;           /* Subtle borders */
-    --input: 220 14% 96%;            /* Light input field background */
-    --ring: 142 69% 58%;             /* Focus ring green 400 */
-
-    /* Dashboard Surface Tokens */
-    --surface-0: 220 33% 98%;        /* #F8FAFC - Page background */
-    --surface-1: 0 0% 100%;          /* #FFFFFF - Card surfaces */
-    --brand-500: 142 76% 55%;        /* #22C55E - Primary brand */
-    --text-primary: 220 26% 14%;     /* #1F2A37 - Primary text */
+    --border: 260 30% 91%;           /* Subtle lavender borders */
+    --input: 260 30% 96%;            /* Light input field background */
+    --ring: 260 70% 70%;             /* Focus ring lavender 300 */
 
     /* Design Token Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--accent)));
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent)) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 14% 98%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(260 20% 98%) 100%);
     --gradient-bento: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(var(--muted)) 100%);
     
     /* Professional Shadow Tokens */
-    --shadow-soft: 0 1px 4px hsl(0 0% 0% / 0.05);
+    --shadow-soft: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
     --shadow-medium: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
     --shadow-large: 0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1);
     --shadow-glow: 0 0 0 1px hsl(var(--primary) / 0.05), 0 0 20px hsl(var(--primary) / 0.1);
     
     /* Micro-interaction Timing */
     --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-smooth: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     
     /* Consistent Border Radius Token */
     --radius: 0.75rem;
     
     /* Sidebar Design Tokens */
-    --sidebar-background: 220 14% 14%;  /* #1E1E22 - Dark sidebar */
-    --sidebar-foreground: 220 14% 96%;  /* White text */
-    --sidebar-primary: 142 76% 55%;     /* Green primary */
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 18%;      /* Subtle dark accent */
-    --sidebar-accent-foreground: 220 14% 96%;
-    --sidebar-border: 220 13% 20%;      /* Dark borders */
-    --sidebar-ring: 142 69% 58%;        /* Green focus ring */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     /* Dark Mode Design Tokens */
-    --background: 220 33% 7%;        /* #111315 - Deep dark */
-    --foreground: 220 14% 96%;       /* #F3F4F6 - High contrast white text */
+    --background: 220 13% 9%;        /* #15171C - Deep sophisticated dark */
+    --foreground: 217 33% 97%;       /* #F1F3F7 - High contrast white text */
     
     /* Dark Mode Brand Palette */
-    --primary: 142 69% 58%;          /* Green 400 #4ADE80 for dark mode */
-    --primary-foreground: 220 33% 7%; /* Dark text on green */
-    --primary-glow: 142 76% 65%;
+    --primary: 260 70% 65%;          /* Brighter lavender for dark mode */
+    --primary-foreground: 220 13% 9%; /* Dark text on lavender */
+    --primary-glow: 260 70% 75%;
     
-    --secondary: 220 14% 14%;        /* #1C1F24 - Dark neutral secondary */
-    --secondary-foreground: 220 14% 96%; /* Light text */
+    --secondary: 220 13% 14%;        /* #1F2229 - Dark neutral secondary */
+    --secondary-foreground: 217 33% 97%; /* Light text */
     
-    --accent: 220 14% 16%;           /* Subtle dark accent */
-    --accent-foreground: 220 14% 96%; /* Light text */
+    --accent: 220 13% 16%;           /* Subtle dark accent */
+    --accent-foreground: 217 33% 97%; /* Light text */
     
     --success: 142 69% 58%;
-    --success-foreground: 220 33% 7%;
+    --success-foreground: 240 10% 3.9%;
     
     --warning: 38 92% 50%;
-    --warning-foreground: 220 33% 7%;
+    --warning-foreground: 240 10% 3.9%;
     
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
     /* Dark Mode Surfaces */
-    --card: 220 14% 15%;             /* #1C1F24 - Dark card */
-    --card-foreground: 220 14% 96%;  /* Light text */
-    --popover: 220 14% 15%;          /* Dark popover */
-    --popover-foreground: 220 14% 96%; /* Light text */
-    --muted: 220 14% 16%;            /* Subtle dark muted */
+    --card: 220 13% 14%;             /* #1F2229 - Consistent dark card */
+    --card-foreground: 217 33% 97%;  /* Light text */
+    --popover: 220 13% 14%;          /* Dark popover */
+    --popover-foreground: 217 33% 97%; /* Light text */
+    --muted: 220 13% 16%;            /* Subtle dark muted */
     --muted-foreground: 220 9% 65%;  /* Medium contrast text */
     --border: 220 13% 20%;           /* Dark borders */
-    --input: 220 14% 16%;            /* Dark input background */
-    --ring: 142 69% 58%;             /* Green focus ring */
-    
-    /* Dashboard Surface Tokens - Dark */
-    --surface-0: 220 33% 7%;         /* #111315 - Page background */
-    --surface-1: 220 14% 15%;        /* #1C1F24 - Card surfaces */
-    --brand-500: 142 69% 58%;        /* #4ADE80 - Primary brand */
-    --text-primary: 220 14% 96%;     /* #F3F4F6 - Primary text */
+    --input: 220 13% 16%;            /* Dark input background */
+    --ring: 260 70% 65%;             /* Lavender focus ring */
     
     /* Dark Mode Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--accent)));
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 50%, hsl(var(--accent)) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(220 14% 15%) 0%, hsl(220 14% 16%) 100%);
-    --gradient-bento: linear-gradient(135deg, hsl(220 14% 15%) 0%, hsl(var(--muted)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 13% 14%) 0%, hsl(220 13% 16%) 100%);
+    --gradient-bento: linear-gradient(135deg, hsl(220 13% 14%) 0%, hsl(var(--muted)) 100%);
     
     /* Dark Mode Shadows */
-    --shadow-soft: 0 1px 4px hsl(0 0% 0% / 0.2);
+    --shadow-soft: 0 1px 3px 0 hsl(0 0% 0% / 0.3), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
     --shadow-medium: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.3);
     --shadow-large: 0 20px 25px -5px hsl(0 0% 0% / 0.3), 0 8px 10px -6px hsl(0 0% 0% / 0.3);
     
-    --sidebar-background: 220 14% 14%;  /* Keep dark sidebar */
-    --sidebar-foreground: 220 14% 96%;
-    --sidebar-primary: 142 69% 58%;
-    --sidebar-primary-foreground: 220 33% 7%;
-    --sidebar-accent: 220 14% 18%;
-    --sidebar-accent-foreground: 220 14% 96%;
-    --sidebar-border: 220 13% 20%;
-    --sidebar-ring: 142 69% 58%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -153,7 +140,7 @@
   }
 
   body {
-    @apply bg-[hsl(var(--surface-0))] text-[hsl(var(--text-primary))];
+    @apply bg-background text-foreground;
     font-family: 'Inter Variable', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'calt';
     font-variation-settings: 'slnt' 0;
@@ -161,7 +148,7 @@
     letter-spacing: -0.011em;
   }
 
-  /* Fluid Typography Scale with 1.2x Modular Scale */
+  /* Fluid Typography Scale */
   h1 {
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 700;
@@ -183,22 +170,7 @@
     line-height: 1.3;
   }
 
-  h4 {
-    font-size: clamp(1.25rem, 2.5vw, 1.875rem);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.4;
-  }
-
-  h5 {
-    font-size: clamp(1.125rem, 2vw, 1.5rem);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.4;
-  }
-
-  h6 {
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
+  h4, h5, h6 {
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 1.4;
@@ -219,25 +191,5 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
-  }
-}
-
-/* Dashboard Layout Styles */
-@layer components {
-  .dashboard-card {
-    @apply rounded-lg border border-border/50 bg-[hsl(var(--surface-1))] shadow-[0_1px_4px_hsl(0_0%_0%_/_0.05)] hover:shadow-medium transition-all duration-300;
-  }
-  
-  .sidebar-nav-item {
-    @apply relative flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground;
-  }
-  
-  .sidebar-nav-item.active {
-    @apply bg-sidebar-accent text-sidebar-accent-foreground;
-  }
-  
-  .sidebar-nav-item.active::before {
-    @apply absolute left-0 top-0 bottom-0 w-1 bg-[hsl(var(--brand-500))] rounded-r-sm;
-    content: '';
   }
 }
