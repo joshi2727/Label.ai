@@ -219,33 +219,37 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
       <div className="w-full max-w-md">
         {renderStep()}
         
-        {/* Consistent button layout across all steps */}
-        <div className="flex justify-between items-center mt-6 min-h-[44px]">
+        {/* Navigation Buttons - Always visible with consistent styling */}
+        <div className="flex justify-between items-center mt-8 px-2">
+          {/* Previous Button - Visible from step 2 onwards */}
           <Button 
             variant="outline" 
             onClick={handlePrevious}
-            className={`transition-opacity duration-200 ${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+            className={`bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 hover:border-white/90 transition-all duration-200 ${
+              step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            }`}
           >
             Previous
           </Button>
           
+          {/* Next/Finish Button - Always visible */}
           <Button 
             variant="primary" 
             onClick={handleNext}
             disabled={!canProceed()}
-            className="ml-auto"
+            className="bg-white text-purple-600 border-2 border-white hover:bg-white/90 hover:text-purple-700 disabled:opacity-50 disabled:cursor-not-allowed font-semibold px-8"
           >
             {step === 4 ? "Start Scanning!" : "Next"}
           </Button>
         </div>
 
-        {/* Progress indicator - consistent across all steps */}
+        {/* Progress Indicator - Always visible */}
         <div className="flex justify-center mt-6 space-x-2">
           {[1, 2, 3, 4].map((i) => (
             <div
               key={i}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                i <= step ? 'bg-primary scale-110' : 'bg-muted'
+                i <= step ? 'bg-white scale-110 shadow-lg' : 'bg-white/30'
               }`}
             />
           ))}
