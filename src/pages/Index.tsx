@@ -8,7 +8,7 @@ import { BentoGrid, BentoCard } from '@/components/BentoGrid';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Camera, Shield, Brain, Users, Zap, Scan, Star, Award, CheckCircle } from 'lucide-react';
-import heroImage from '@/assets/hero-food-scan.jpg';
+import heroImage from '@/assets/hero-scan.jpg';
 import healthyFoodsImage from '@/assets/mobile-scan-illustration.jpg';
 
 type AppState = 'landing' | 'onboarding' | 'scanner' | 'analysis';
@@ -117,11 +117,12 @@ const Index = () => {
                 <div className="relative">
                   <img 
                     src={heroImage} 
-                    alt="AI food label scanning hero illustration" 
+                    alt="Person scanning a food label with a phone - Label.ai" 
                     loading="eager"
+                    decoding="async"
                     className="w-full rounded-lg shadow-large hover:shadow-glow transition-all duration-500 hover:scale-[1.02]"
                   />
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/10 to-transparent"></div>
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
               </div>
             </ScrollReveal>
