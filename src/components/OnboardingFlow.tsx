@@ -223,21 +223,19 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
         <div className="flex justify-between items-center mt-8 px-2">
           {/* Previous Button - Visible from step 2 onwards */}
           <Button 
-            variant="outline" 
+            variant="soft" 
             onClick={handlePrevious}
-            className={`bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white/30 hover:border-white/90 transition-all duration-200 ${
-              step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'
-            }`}
+            className={`${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'} transition-all duration-200`}
           >
             Previous
           </Button>
           
           {/* Next/Finish Button - Always visible */}
           <Button 
-            variant="primary" 
+            variant="default" 
             onClick={handleNext}
             disabled={!canProceed()}
-            className="bg-white text-purple-600 border-2 border-white hover:bg-white/90 hover:text-purple-700 disabled:opacity-50 disabled:cursor-not-allowed font-semibold px-8"
+            className="font-semibold px-8"
           >
             {step === 4 ? "Start Scanning!" : "Next"}
           </Button>
@@ -249,7 +247,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
             <div
               key={i}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                i <= step ? 'bg-white scale-110 shadow-lg' : 'bg-white/30'
+                i <= step ? 'bg-primary scale-110 shadow' : 'bg-muted'
               }`}
             />
           ))}

@@ -8,8 +8,8 @@ import { BentoGrid, BentoCard } from '@/components/BentoGrid';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Camera, Shield, Brain, Users, Zap, Scan, Star, Award, CheckCircle } from 'lucide-react';
-import heroImage from '@/assets/hero-ghibli.jpg';
-import healthyFoodsImage from '@/assets/mobile-scanning-ghibli.jpg';
+import heroImage from '@/assets/hero-food-scan.jpg';
+import healthyFoodsImage from '@/assets/mobile-scan-illustration.jpg';
 
 type AppState = 'landing' | 'onboarding' | 'scanner' | 'analysis';
 
@@ -117,7 +117,8 @@ const Index = () => {
                 <div className="relative">
                   <img 
                     src={heroImage} 
-                    alt="Ghibli-inspired AI food scanning interface" 
+                    alt="AI food label scanning hero illustration" 
+                    loading="eager"
                     className="w-full rounded-lg shadow-large hover:shadow-glow transition-all duration-500 hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/10 to-transparent"></div>
@@ -236,7 +237,8 @@ const Index = () => {
               <div className="relative group">
                 <img 
                   src={healthyFoodsImage} 
-                  alt="Ghibli-style mobile food label scanning" 
+                  alt="Mobile food label scanning illustration" 
+                  loading="lazy"
                   className="w-full rounded-lg shadow-large group-hover:shadow-glow transition-all duration-500 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/5 to-transparent"></div>
