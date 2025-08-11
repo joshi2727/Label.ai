@@ -122,7 +122,7 @@ const Index = () => {
                     decoding="async"
                     className="w-full rounded-lg shadow-large hover:shadow-glow transition-all duration-500 hover:scale-[1.02]"
                   />
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-t from-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 rounded-lg pointer-events-none bg-gradient-to-t from-primary/30 via-primary/10 to-transparent mix-blend-multiply"></div>
                 </div>
               </div>
             </ScrollReveal>
