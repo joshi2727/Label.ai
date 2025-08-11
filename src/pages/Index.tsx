@@ -9,6 +9,7 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Camera, Shield, Brain, Users, Zap, Scan, Star, Award, CheckCircle } from 'lucide-react';
 import heroImage from '@/assets/hero-ghibli.jpg';
+import fallbackHero from '@/assets/hero-scan.jpg';
 import healthyFoodsImage from '@/assets/mobile-scan-illustration.jpg';
 
 type AppState = 'landing' | 'onboarding' | 'scanner' | 'analysis';
@@ -120,6 +121,8 @@ const Index = () => {
                     alt="Ghibli-inspired AI food label scanning scene - Label.ai" 
                     loading="eager"
                     decoding="async"
+                    fetchPriority="high"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackHero; e.currentTarget.alt = 'Food label scanning illustration - Label.ai'; }}
                     className="w-full rounded-lg shadow-large hover:shadow-glow transition-all duration-500 hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 rounded-lg pointer-events-none bg-gradient-to-t from-primary/30 via-primary/10 to-transparent mix-blend-multiply"></div>
