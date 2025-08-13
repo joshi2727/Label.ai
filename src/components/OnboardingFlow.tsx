@@ -215,7 +215,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-muted/70 via-muted/50 to-background/90 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {renderStep()}
         
