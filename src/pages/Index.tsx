@@ -8,7 +8,7 @@ import { BentoGrid, BentoCard } from '@/components/BentoGrid';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Camera, Shield, Brain, Users, Zap, Scan, Star, Award, CheckCircle } from 'lucide-react';
-import heroImage from '@/assets/hero-ghibli-scan.jpg';
+
 import fallbackHero from '@/assets/hero-scan.jpg';
 import healthyFoodsImage from '@/assets/mobile-scan-illustration.jpg';
 
@@ -117,8 +117,8 @@ const Index = () => {
               <div className="max-w-5xl mx-auto">
                 <div className="relative">
                   <img 
-                    src={heroImage} 
-                    alt="Ghibli-style food label scanning hero image - Label.ai" 
+                    src="/lovable-uploads/52325bf4-7c8d-4a33-850f-a11824491810.png" 
+                    alt="Food barcode scanning on phone in grocery aisle - Label.ai" 
                     loading="eager"
                     decoding="async"
                     fetchPriority="high"
