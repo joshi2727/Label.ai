@@ -225,7 +225,8 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
           <Button 
             variant="soft" 
             onClick={handlePrevious}
-            className={`${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'} transition-all duration-200`}
+            aria-label="Go to previous step"
+            className={`${step === 1 ? 'opacity-0 pointer-events-none' : 'opacity-100'} bg-muted/90 border border-border text-foreground shadow-medium hover:bg-muted transition-colors`}
           >
             Previous
           </Button>
